@@ -1,0 +1,113 @@
+.theme-dark {
+  --white: 255, 255, 255;
+  --base-3x-light: 249, 250, 251;
+  --base-2x-light: 243, 244, 246;
+  --base-x-light: 229, 231, 235;
+  --base-light: 209, 213, 219;
+  --base: 156, 163, 175;
+  --base-mid: 107, 114, 128;
+  --base-dark: 75, 85, 99;
+  --base-x-dark: 55, 65, 81;
+  --base-2x-dark: 31, 41, 55;
+  --base-3x-dark: 17, 24, 39;
+  --base-4x-dark: 3, 7, 18;
+  --black: 0, 0, 0;
+}
+
+.theme-dark.theme-amber {
+  --primary-3x-light: 255, 251, 235;
+  --primary-2x-light: 254, 243, 199;
+  --primary-x-light: 253, 230, 138;
+  --primary-light: 252, 211, 77;
+  --primary: 251, 191, 36;
+  --primary-mid: 245, 158, 11;
+  --primary-dark: 217, 119, 6;
+  --primary-x-dark: 180, 83, 9;
+  --primary-2x-dark: 146, 64, 14;
+  --primary-3x-dark: 120, 53, 15;
+  --primary-4x-dark: 69, 26, 3;
+}
+
+.theme-dark.theme-indigo {
+  --primary-3x-light: 238, 242, 255;
+  --primary-2x-light: 224, 231, 255;
+  --primary-x-light: 199, 210, 254;
+  --primary-light: 165, 180, 252;
+  --primary: 129, 140, 248;
+  --primary-mid: 99, 102, 241;
+  --primary-dark: 79, 70, 229;
+  --primary-x-dark: 67, 56, 202;
+  --primary-2x-dark: 55, 48, 163;
+  --primary-3x-dark: 49, 46, 129;
+  --primary-4x-dark: 30, 27, 75;
+}
+
+.theme-dark.theme-teal {
+  --primary-3x-light: 240, 253, 250;
+  --primary-2x-light: 204, 251, 241;
+  --primary-x-light: 153, 246, 228;
+  --primary-light: 94, 234, 212;
+  --primary: 45, 212, 191;
+  --primary-mid: 20, 184, 166;
+  --primary-dark: 13, 148, 136;
+  --primary-x-dark: 15, 118, 110;
+  --primary-2x-dark: 17, 94, 89;
+  --primary-3x-dark: 19, 78, 74;
+  --primary-4x-dark: 4, 47, 46;
+}
+
+.theme-dark.theme-violet {
+  --primary-3x-light: 245, 243, 255;
+  --primary-2x-light: 237, 233, 254;
+  --primary-x-light: 221, 214, 254;
+  --primary-light: 196, 181, 253;
+  --primary: 167, 139, 250;
+  --primary-mid: 139, 92, 246;
+  --primary-dark: 124, 58, 237;
+  --primary-x-dark: 109, 40, 217;
+  --primary-2x-dark: 91, 33, 182;
+  --primary-3x-dark: 76, 29, 149;
+  --primary-4x-dark: 46, 16, 101;
+}
+
+.theme-dark.theme-sky {
+  --primary-3x-light: 240, 249, 255;
+  --primary-2x-light: 224, 242, 254;
+  --primary-x-light: 186, 230, 253;
+  --primary-light: 125, 211, 252;
+  --primary: 56, 189, 248;
+  --primary-mid: 14, 165, 233;
+  --primary-dark: 2, 132, 199;
+  --primary-x-dark: 3, 105, 161;
+  --primary-2x-dark: 7, 89, 133;
+  --primary-3x-dark: 12, 74, 110;
+  --primary-4x-dark: 8, 47, 73;
+}
+
+.theme-dark.theme-green {
+  --primary-3x-light: 240, 253, 244;
+  --primary-2x-light: 220, 252, 231;
+  --primary-x-light: 187, 247, 208;
+  --primary-light: 134, 239, 172;
+  --primary: 74, 222, 128;
+  --primary-mid: 34, 197, 94;
+  --primary-dark: 22, 163, 74;
+  --primary-x-dark: 21, 128, 61;
+  --primary-2x-dark: 22, 101, 52;
+  --primary-3x-dark: 20, 83, 45;
+  --primary-4x-dark: 5, 46, 22;
+}
+
+.theme-dark.theme-fuchsia {
+  --primary-3x-light: 253, 244, 255;
+  --primary-2x-light: 250, 232, 255;
+  --primary-x-light: 245, 208, 254;
+  --primary-light: 240, 171, 252;
+  --primary: 232, 121, 249;
+  --primary-mid: 217, 70, 239;
+  --primary-dark: 192, 38, 211;
+  --primary-x-dark: 162, 28, 175;
+  --primary-2x-dark: 134, 25, 143;
+  --primary-3x-dark: 112, 26, 117;
+  --primary-4x-dark: 74, 4, 78;
+}

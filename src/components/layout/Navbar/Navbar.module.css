@@ -1,0 +1,26 @@
+.navBarWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  color: rgb(var(--base-2x-light));
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.menuBtn {
+  width: 3rem;
+  height: 3rem;
+}
+
+.menuIcon {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .navBarWrapper {
+    display: none;
+  }
+}

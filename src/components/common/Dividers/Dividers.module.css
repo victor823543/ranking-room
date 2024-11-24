@@ -1,0 +1,31 @@
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.horizontal {
+  flex-direction: row;
+  width: 100%;
+}
+
+.vertical {
+  flex-direction: column;
+  height: 100%;
+}
+
+.line {
+  flex-grow: 1;
+  border-bottom-style: solid;
+}
+
+.text {
+  margin: 0 10px;
+  white-space: nowrap;
+  font-weight: 300;
+}
+
+.verticalText {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}

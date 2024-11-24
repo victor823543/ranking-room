@@ -1,0 +1,60 @@
+.primary {
+  color: rgb(var(--base-x-light));
+  font-size: 2.5rem;
+  font-weight: 300;
+}
+
+.secondary {
+  color: rgb(var(--base-light));
+  font-size: 1.3rem;
+  font-weight: 300;
+}
+
+.gridbox {
+  color: rgb(var(--base-light));
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.landing {
+  font-size: 2.8rem;
+  color: var(--gray-x-dark);
+  font-weight: 300;
+}
+
+.config {
+  font-size: 2.5rem;
+  color: var(--gray-x-light);
+  font-weight: 700;
+  max-width: 30rem;
+}
+
+.center {
+  text-align: center;
+}
+
+@media (min-width: 786px) {
+  .landing {
+    font-size: 4rem;
+  }
+}
+
+@media (min-width: 610px) {
+  .landing {
+    font-size: 3.7rem;
+  }
+}
+
+@media (min-width: 480px) {
+  .landing {
+    font-size: 3.5rem;
+  }
+
+  .config {
+    font-size: 2.2rem;
+  }
+
+  .secondary {
+    font-size: 1.3rem;
+  }
+}

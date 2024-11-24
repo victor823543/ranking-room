@@ -1,0 +1,103 @@
+.textField {
+  border-bottom: solid 2px rgb(var(--base-mid));
+  position: relative;
+  width: 25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: border-color 0.3s;
+}
+
+.textField.withFocus {
+  border-bottom: solid 2px rgb(var(--primary));
+}
+
+.iconWrapper {
+  width: 2rem;
+  position: relative;
+  color: rgb(var(--base-mid));
+  display: flex;
+  align-items: end;
+
+  transition: color 0.3s;
+}
+
+.withFocus .iconWrapper {
+  color: rgb(var(--primary));
+}
+
+.iconWrapper > svg {
+  width: 100%;
+  margin-top: auto;
+}
+
+.placeholder {
+  position: absolute;
+  left: 2.5rem;
+  top: 0;
+  white-space: nowrap;
+  width: calc(100% - 32px);
+  pointer-events: none;
+  color: var(--field-color);
+  opacity: 0.8;
+  font-size: 1rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 0.5rem;
+  box-sizing: border-box;
+  transition: color 0.3s;
+}
+
+.placeholder > span {
+  padding: 0.5rem 0;
+}
+
+.placeholder.focus {
+  color: rgb(var(--primary));
+}
+
+.input {
+  outline: none;
+  border: none;
+  font-size: 1.1rem;
+  color: var(--field-color);
+  background-color: transparent;
+  height: 100%;
+  width: 100%;
+  padding: 0.75rem 0.5rem;
+}
+
+/* "block ml-1.5 text-xs text-red-500" */
+
+.error {
+  display: flex;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.errorIcon {
+  width: 1rem;
+  height: 1rem;
+  fill: rgb(var(--red-light));
+}
+
+.errorText {
+  margin-left: 0.25rem;
+  font-size: 0.75rem;
+  color: rgb(var(--red-light));
+}
+
+@media (max-width: 479px) {
+  .input {
+    font-size: 1.4rem;
+  }
+
+  .placeholder {
+    font-size: 1.4rem;
+  }
+
+  .errorText {
+    font-size: 1rem;
+  }
+}

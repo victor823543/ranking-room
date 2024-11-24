@@ -1,0 +1,129 @@
+.btnContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.objectStep {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.container > *:first-child {
+  min-height: 30rem;
+  padding-right: 2rem;
+  border-right: solid 1px rgba(var(--base-light), 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.container > *:nth-child(2) {
+  padding-bottom: 3rem;
+  padding-left: 2rem;
+  overflow-y: scroll;
+  max-height: 40rem;
+  box-sizing: border-box;
+}
+
+.container > * {
+  display: flex;
+  flex-direction: column;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.imgBtn {
+  width: 4rem;
+  height: 4rem;
+  position: relative;
+  color: rgb(var(--base-light));
+  background-color: rgba(var(--base-light), 0.2);
+  border-radius: var(--border-radius);
+}
+
+.imgBtn > svg {
+  fill: rgb(var(--base));
+}
+
+.imgBtn > img {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  object-fit: cover;
+  border-radius: var(--border-radius);
+  border: solid 5px rgba(var(--base-light), 0.2);
+}
+
+.nextStep {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: solid 1px rgba(var(--base-light), 0.3);
+  margin-right: 4rem;
+}
+
+.nextStep p {
+  font-size: 0.9rem;
+  color: rgb(var(--base));
+  margin-top: 0.5rem;
+}
+
+.objectList {
+  display: flex;
+  flex-direction: column;
+}
+
+.object {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: rgba(var(--base-light), 0.2);
+  padding: 0.5rem;
+  margin: 0.75rem 0;
+  border-radius: var(--border-radius);
+  color: rgb(var(--base-light));
+}
+
+.imgContainer {
+  position: relative;
+  width: 4rem;
+  height: 4rem;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  background-color: rgb(var(--base-dark));
+  padding: 0.25rem;
+  box-sizing: border-box;
+}
+
+.objectImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--border-radius);
+}
+
+.object p {
+  font-size: 1.1rem;
+  flex: 1;
+}
+
+.delete {
+  width: 2rem;
+  padding: 0.25rem 0.75rem;
+  border-left: solid 1px rgba(var(--base-light), 0.5);
+}

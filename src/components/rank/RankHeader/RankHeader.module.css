@@ -1,0 +1,33 @@
+.rankHeader {
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(var(--base-light), 0.5);
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.rankInfo {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  gap: 1rem;
+  color: rgb(var(--base-light));
+}
+
+.rankInfo p {
+  width: max-content;
+  white-space: nowrap;
+  text-decoration: underline;
+  text-decoration-color: rgb(var(--primary-light));
+}
+
+.reloadBtn {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.reloadBtn svg {
+  width: 2.2rem;
+}

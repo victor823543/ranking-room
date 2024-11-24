@@ -1,0 +1,310 @@
+:root {
+  /* Red */
+  --red-3x-light: 254, 242, 242;
+  --red-2x-light: 254, 226, 226;
+  --red-x-light: 254, 202, 202;
+  --red-light: 252, 165, 165;
+  --red: 248, 113, 113;
+  --red-mid: 239, 68, 68;
+  --red-dark: 220, 38, 38;
+  --red-x-dark: 185, 28, 28;
+  --red-2x-dark: 153, 27, 27;
+  --red-3x-dark: 127, 29, 29;
+  --red-4x-dark: 69, 10, 10;
+
+  /* Blue */
+  --blue-3x-light: 239, 246, 255;
+  --blue-2x-light: 219, 234, 254;
+  --blue-x-light: 191, 219, 254;
+  --blue-light: 147, 197, 253;
+  --blue: 96, 165, 250;
+  --blue-mid: 59, 130, 246;
+  --blue-dark: 37, 99, 235;
+  --blue-x-dark: 29, 78, 216;
+  --blue-2x-dark: 30, 64, 175;
+  --blue-3x-dark: 30, 58, 138;
+  --blue-4x-dark: 23, 37, 84;
+
+  /* Green */
+  --green-3x-light: 240, 253, 244;
+  --green-2x-light: 220, 252, 231;
+  --green-x-light: 187, 247, 208;
+  --green-light: 134, 239, 172;
+  --green: 74, 222, 128;
+  --green-mid: 34, 197, 94;
+  --green-dark: 22, 163, 74;
+  --green-x-dark: 21, 128, 61;
+  --green-2x-dark: 22, 101, 52;
+  --green-3x-dark: 20, 83, 45;
+  --green-4x-dark: 5, 46, 22;
+
+  /* Yellow */
+  --yellow-3x-light: 254, 252, 232;
+  --yellow-2x-light: 254, 249, 195;
+  --yellow-x-light: 254, 240, 138;
+  --yellow-light: 253, 224, 71;
+  --yellow: 250, 204, 21;
+  --yellow-mid: 234, 179, 8;
+  --yellow-dark: 202, 138, 4;
+  --yellow-x-dark: 161, 98, 7;
+  --yellow-2x-dark: 133, 77, 14;
+  --yellow-3x-dark: 113, 63, 18;
+  --yellow-4x-dark: 66, 32, 3;
+
+  /* Gray */
+  --gray-3x-light: 249, 250, 251;
+  --gray-2x-light: 243, 244, 246;
+  --gray-x-light: 229, 231, 235;
+  --gray-light: 209, 213, 219;
+  --gray: 156, 163, 175;
+  --gray-mid: 107, 114, 128;
+  --gray-dark: 75, 85, 99;
+  --gray-x-dark: 55, 65, 81;
+  --gray-2x-dark: 31, 41, 55;
+  --gray-3x-dark: 17, 24, 39;
+  --gray-4x-dark: 3, 7, 18;
+
+  /* Purple */
+  --purple-3x-light: 250, 245, 255;
+  --purple-2x-light: 243, 232, 255;
+  --purple-x-light: 233, 213, 255;
+  --purple-light: 216, 180, 254;
+  --purple: 192, 132, 252;
+  --purple-mid: 168, 85, 247;
+  --purple-dark: 147, 51, 234;
+  --purple-x-dark: 126, 34, 206;
+  --purple-2x-dark: 107, 33, 168;
+  --purple-3x-dark: 88, 28, 135;
+  --purple-4x-dark: 59, 7, 100;
+
+  /* Cyan */
+  --cyan-3x-light: 236, 254, 255;
+  --cyan-2x-light: 207, 250, 254;
+  --cyan-x-light: 165, 243, 252;
+  --cyan-light: 103, 232, 249;
+  --cyan: 34, 211, 238;
+  --cyan-mid: 6, 182, 212;
+  --cyan-dark: 8, 145, 178;
+  --cyan-x-dark: 14, 116, 144;
+  --cyan-2x-dark: 21, 94, 117;
+  --cyan-3x-dark: 22, 78, 99;
+  --cyan-4x-dark: 8, 51, 68;
+
+  /* Orange */
+  --orange-3x-light: 255, 247, 237;
+  --orange-2x-light: 255, 237, 213;
+  --orange-x-light: 254, 215, 170;
+  --orange-light: 253, 186, 116;
+  --orange: 251, 146, 60;
+  --orange-mid: 249, 115, 22;
+  --orange-dark: 234, 88, 12;
+  --orange-x-dark: 194, 65, 12;
+  --orange-2x-dark: 154, 52, 18;
+  --orange-3x-dark: 124, 45, 18;
+  --orange-4x-dark: 67, 20, 7;
+
+  /* Amber */
+  --amber-3x-light: 255, 251, 235;
+  --amber-2x-light: 254, 243, 199;
+  --amber-x-light: 253, 230, 138;
+  --amber-light: 252, 211, 77;
+  --amber: 251, 191, 36;
+  --amber-mid: 245, 158, 11;
+  --amber-dark: 217, 119, 6;
+  --amber-x-dark: 180, 83, 9;
+  --amber-2x-dark: 146, 64, 14;
+  --amber-3x-dark: 120, 53, 15;
+  --amber-4x-dark: 69, 26, 3;
+
+  /* Lime */
+  --lime-3x-light: 247, 254, 231;
+  --lime-2x-light: 236, 252, 203;
+  --lime-x-light: 217, 249, 157;
+  --lime-light: 190, 242, 100;
+  --lime: 163, 230, 53;
+  --lime-mid: 132, 204, 22;
+  --lime-dark: 101, 163, 13;
+  --lime-x-dark: 77, 124, 15;
+  --lime-2x-dark: 63, 98, 18;
+  --lime-3x-dark: 54, 83, 20;
+  --lime-4x-dark: 26, 46, 5;
+
+  /* Emerald */
+  --emerald-3x-light: 236, 253, 245;
+  --emerald-2x-light: 209, 250, 229;
+  --emerald-x-light: 167, 243, 208;
+  --emerald-light: 110, 231, 183;
+  --emerald: 52, 211, 153;
+  --emerald-mid: 16, 185, 129;
+  --emerald-dark: 5, 150, 105;
+  --emerald-x-dark: 4, 120, 87;
+  --emerald-2x-dark: 6, 95, 70;
+  --emerald-3x-dark: 6, 78, 59;
+  --emerald-4x-dark: 2, 44, 34;
+
+  /* Teal */
+  --teal-3x-light: 240, 253, 250;
+  --teal-2x-light: 204, 251, 241;
+  --teal-x-light: 153, 246, 228;
+  --teal-light: 94, 234, 212;
+  --teal: 45, 212, 191;
+  --teal-mid: 20, 184, 166;
+  --teal-dark: 13, 148, 136;
+  --teal-x-dark: 15, 118, 110;
+  --teal-2x-dark: 17, 94, 89;
+  --teal-3x-dark: 19, 78, 74;
+  --teal-4x-dark: 4, 47, 46;
+
+  /* Sky */
+  --sky-3x-light: 240, 249, 255;
+  --sky-2x-light: 224, 242, 254;
+  --sky-x-light: 186, 230, 253;
+  --sky-light: 125, 211, 252;
+  --sky: 56, 189, 248;
+  --sky-mid: 14, 165, 233;
+  --sky-dark: 2, 132, 199;
+  --sky-x-dark: 3, 105, 161;
+  --sky-2x-dark: 7, 89, 133;
+  --sky-3x-dark: 12, 74, 110;
+  --sky-4x-dark: 8, 47, 73;
+
+  /* Indigo */
+  --indigo-3x-light: 238, 242, 255;
+  --indigo-2x-light: 224, 231, 255;
+  --indigo-x-light: 199, 210, 254;
+  --indigo-light: 165, 180, 252;
+  --indigo: 129, 140, 248;
+  --indigo-mid: 99, 102, 241;
+  --indigo-dark: 79, 70, 229;
+  --indigo-x-dark: 67, 56, 202;
+  --indigo-2x-dark: 55, 48, 163;
+  --indigo-3x-dark: 49, 46, 129;
+  --indigo-4x-dark: 30, 27, 75;
+
+  /* Violet */
+  --violet-3x-light: 245, 243, 255;
+  --violet-2x-light: 237, 233, 254;
+  --violet-x-light: 221, 214, 254;
+  --violet-light: 196, 181, 253;
+  --violet: 167, 139, 250;
+  --violet-mid: 139, 92, 246;
+  --violet-dark: 124, 58, 237;
+  --violet-x-dark: 109, 40, 217;
+  --violet-2x-dark: 91, 33, 182;
+  --violet-3x-dark: 76, 29, 149;
+  --violet-4x-dark: 46, 16, 101;
+
+  /* Fuchsia */
+  --fuchsia-3x-light: 253, 244, 255;
+  --fuchsia-2x-light: 250, 232, 255;
+  --fuchsia-x-light: 245, 208, 254;
+  --fuchsia-light: 240, 171, 252;
+  --fuchsia: 232, 121, 249;
+  --fuchsia-mid: 217, 70, 239;
+  --fuchsia-dark: 192, 38, 211;
+  --fuchsia-x-dark: 162, 28, 175;
+  --fuchsia-2x-dark: 134, 25, 143;
+  --fuchsia-3x-dark: 112, 26, 117;
+  --fuchsia-4x-dark: 74, 4, 78;
+
+  /* Pink */
+  --pink-3x-light: 253, 242, 248;
+  --pink-2x-light: 252, 231, 243;
+  --pink-x-light: 251, 207, 232;
+  --pink-light: 249, 168, 212;
+  --pink: 244, 114, 182;
+  --pink-mid: 236, 72, 153;
+  --pink-dark: 219, 39, 119;
+  --pink-x-dark: 190, 24, 93;
+  --pink-2x-dark: 157, 23, 77;
+  --pink-3x-dark: 131, 24, 67;
+  --pink-4x-dark: 80, 7, 36;
+
+  /* Rose */
+  --rose-3x-light: 255, 241, 242;
+  --rose-2x-light: 255, 228, 230;
+  --rose-x-light: 254, 205, 211;
+  --rose-light: 253, 164, 175;
+  --rose: 251, 113, 133;
+  --rose-mid: 244, 63, 94;
+  --rose-dark: 225, 29, 72;
+  --rose-x-dark: 190, 18, 60;
+  --rose-2x-dark: 159, 18, 57;
+  --rose-3x-dark: 136, 19, 55;
+  --rose-4x-dark: 76, 5, 25;
+
+  /* Slate */
+  --slate-3x-light: 248, 250, 252;
+  --slate-2x-light: 241, 245, 249;
+  --slate-x-light: 226, 232, 240;
+  --slate-light: 203, 213, 225;
+  --slate: 148, 163, 184;
+  --slate-mid: 100, 116, 139;
+  --slate-dark: 71, 85, 105;
+  --slate-x-dark: 51, 65, 85;
+  --slate-2x-dark: 30, 41, 59;
+  --slate-3x-dark: 15, 23, 42;
+  --slate-4x-dark: 2, 6, 23;
+
+  /* Zinc */
+  --zinc-3x-light: 250, 250, 250;
+  --zinc-2x-light: 244, 244, 245;
+  --zinc-x-light: 228, 228, 231;
+  --zinc-light: 212, 212, 216;
+  --zinc: 161, 161, 170;
+  --zinc-mid: 113, 113, 122;
+  --zinc-dark: 82, 82, 91;
+  --zinc-x-dark: 63, 63, 70;
+  --zinc-2x-dark: 39, 39, 42;
+  --zinc-3x-dark: 24, 24, 27;
+  --zinc-4x-dark: 9, 9, 11;
+
+  /* Stone */
+  --stone-3x-light: 250, 250, 249;
+  --stone-2x-light: 245, 245, 244;
+  --stone-x-light: 231, 229, 228;
+  --stone-light: 214, 211, 209;
+  --stone: 168, 162, 158;
+  --stone-mid: 120, 113, 108;
+  --stone-dark: 87, 83, 78;
+  --stone-x-dark: 68, 64, 60;
+  --stone-2x-dark: 41, 37, 36;
+  --stone-3x-dark: 28, 25, 23;
+  --stone-4x-dark: 12, 10, 9;
+
+  /* Neutral */
+  --neutral-3x-light: 250, 250, 250;
+  --neutral-2x-light: 245, 245, 245;
+  --neutral-x-light: 229, 229, 229;
+  --neutral-light: 212, 212, 212;
+  --neutral: 163, 163, 163;
+  --neutral-mid: 115, 115, 115;
+  --neutral-dark: 82, 82, 82;
+  --neutral-x-dark: 64, 64, 64;
+  --neutral-2x-dark: 38, 38, 38;
+  --neutral-3x-dark: 23, 23, 23;
+  --neutral-4x-dark: 10, 10, 10;
+
+  /* Layout */
+  --sidebar-width: 7rem;
+  --navbar-height: 4rem;
+  --full-height: calc(100vh - var(--navbar-height));
+
+  /* Border */
+  --border-radius: 8px;
+  --border-radius-sm: 4px;
+
+  /* Shadow */
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+    0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+@media (min-width: 768px) {
+  :root {
+    /* Layout */
+    --full-heihgt: 100vh;
+  }
+}

@@ -1,0 +1,15 @@
+.backButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgb(var(--base-light));
+  padding: 1.5rem;
+}
+
+.backButton:hover {
+  color: rgb(var(--base-x-light));
+}
+
+.backIcon {
+  width: 1.5rem;
+}

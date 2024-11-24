@@ -1,0 +1,62 @@
+.search {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  height: fit-content;
+  background-color: var(--form-primary);
+  box-shadow:
+    0 4px 6px -1px rgb(0 0 0 / 0.1),
+    0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.searchField {
+  overflow: hidden;
+  height: 4rem;
+  width: 30rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.searchField > input {
+  all: unset;
+  font-size: 1rem;
+  height: 100%;
+  width: 100%;
+  padding: 0 1rem;
+  font-weight: 300;
+  color: var(--form-text);
+}
+
+.inputSearchIcon {
+  color: var(--form-text-secondary);
+  margin-right: 1rem;
+}
+
+.searchDropdown {
+  max-height: 20rem;
+  overflow-y: scroll;
+}
+
+.searchObject {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 4rem;
+  padding: 0 1rem;
+  text-decoration: none;
+}
+
+.searchObject:hover {
+  background-color: hsl(from var(--form-primary) h s calc(l - 5));
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.description {
+  font-size: 0.8rem;
+  font-weight: 300;
+}

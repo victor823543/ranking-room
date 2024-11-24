@@ -1,0 +1,64 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+  background-color: rgb(var(--base-4x-dark));
+}
+
+* {
+  margin: 0;
+}
+
+ol,
+ul,
+li,
+button,
+a {
+  all: unset;
+}
+
+button,
+a {
+  cursor: pointer;
+}
+
+@media (hover: none) {
+  *:hover {
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+html {
+  font-size: 16px; /* Default font size */
+}
+
+@media (max-width: 1200px) {
+  html {
+    font-size: 15px; /* Slightly smaller font size for large tablets and small desktops */
+  }
+}
+
+@media (max-width: 992px) {
+  html {
+    font-size: 14px; /* Smaller font size for tablets */
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 13px; /* Smaller font size for large phones */
+  }
+}
+
+@media (max-width: 576px) {
+  html {
+    font-size: 12px; /* Smallest font size for small phones */
+  }
+}

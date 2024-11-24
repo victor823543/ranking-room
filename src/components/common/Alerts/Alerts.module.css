@@ -1,0 +1,143 @@
+/* General alert styles */
+.alert {
+  padding: 1rem;
+  box-shadow: var(--shadow-lg);
+  border-left-width: 4px;
+  border-left-style: solid;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+}
+
+.text {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.link {
+  margin-left: 0.25rem;
+  text-decoration-line: underline;
+}
+
+.iconWrapper {
+  flex-shrink: 0;
+  margin: auto 0;
+}
+
+.icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.close {
+  all: unset;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  padding: 0.5rem 1rem;
+}
+
+.closeIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* Specific alert styles */
+/* Warning styles */
+.warning {
+  border-left-color: rgb(var(--yellow));
+  background-color: rgba(var(--yellow-x-dark), 0.2);
+  backdrop-filter: blur(8px);
+}
+
+.warning .text {
+  color: rgb(var(--yellow-x-light));
+}
+
+.warning .icon {
+  fill: rgb(var(--yellow));
+}
+
+.warning .closeIcon {
+  stroke: rgb(var(--yellow));
+}
+
+/* Error styles */
+.error {
+  border-left-color: rgb(var(--red));
+  background-color: rgba(var(--red-x-dark), 0.2);
+  backdrop-filter: blur(8px);
+}
+
+.error .icon {
+  fill: rgb(var(--red));
+}
+
+.error .closeIcon {
+  stroke: rgb(var(--red));
+}
+
+.error .text {
+  color: rgb(var(--red-x-light));
+}
+
+/* Success styles */
+.success {
+  border-left-color: rgb(var(--green));
+  background-color: rgba(var(--green-x-dark), 0.2);
+  backdrop-filter: blur(8px);
+}
+
+.success .icon {
+  fill: rgb(var(--green));
+}
+
+.success .closeIcon {
+  stroke: rgb(var(--green));
+}
+
+.success .text {
+  color: rgb(var(--green-x-light));
+}
+
+/* Alerts wrapper styles */
+.container {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 95%;
+  z-index: 100;
+}
+
+.hasSidebar {
+  top: 5rem;
+  max-width: 32rem;
+}
+
+.noSidebar {
+  top: 1rem;
+  max-width: 36rem;
+}
+
+.alertList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (min-width: 480px) {
+  .container {
+    width: 100%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hasSidebar {
+    top: 1rem;
+    padding-left: var(--sidebar-width);
+    max-width: 40rem;
+  }
+}

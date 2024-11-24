@@ -1,0 +1,72 @@
+.listWrapper {
+  display: flex;
+}
+
+.listNumbers {
+  display: flex;
+  flex-direction: column;
+}
+
+.listNumbers > * {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  padding: 0 0.75rem 0 0.25rem;
+  height: 6.5rem;
+  color: rgb(var(--base-light));
+  font-size: 1.1rem;
+  margin-right: 0.5rem;
+}
+
+.objectList {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.object {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: rgba(var(--base-x-dark), 0.4);
+  padding: 0.5rem;
+  margin: 0.75rem 0;
+  border-radius: var(--border-radius);
+  outline: solid 1px rgba(var(--base-light), 0.2);
+  color: rgb(var(--base-light));
+  cursor: pointer;
+  transition:
+    background-color 0.3s,
+    outline 0.3s;
+}
+
+.object:hover {
+  background-color: rgba(var(--primary), 0.3);
+  outline: solid 1px rgb(var(--primary));
+}
+
+.imgContainer {
+  position: relative;
+  width: 4rem;
+  height: 4rem;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  background-color: rgb(var(--base-dark));
+  padding: 0.25rem;
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+.objectImg {
+  width: 4rem;
+  height: 4rem;
+  object-fit: cover;
+  border-radius: var(--border-radius);
+  position: relative;
+  z-index: 30;
+}
+
+.object p {
+  font-size: 1.1rem;
+  flex: 1;
+}

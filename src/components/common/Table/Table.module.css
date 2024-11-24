@@ -1,0 +1,46 @@
+.tableContainer {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table {
+  min-width: 100%;
+  border-spacing: 0;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+.tHead {
+  text-align: left;
+}
+
+.th {
+  margin: 0;
+  padding: 0.5rem 0.75rem;
+  border-collapse: collapse;
+  border-bottom: solid 1px var(--gray);
+  color: rgb(var(--base-light));
+  font-weight: 500;
+}
+
+.tData {
+  padding: 1rem 1.25rem 1rem 0.75rem;
+  color: rgb(var(--base-x-light));
+  font-weight: 300;
+}
+
+.tData:last-of-type {
+  width: 0;
+}
+
+.tData:last-of-type > * {
+  width: max-content;
+}
+
+.tRow.even {
+  background-color: rgba(var(--base), 0.15);
+}
+
+.tRow.uneven {
+  background-color: rgba(var(--base-x-dark), 0.2);
+}

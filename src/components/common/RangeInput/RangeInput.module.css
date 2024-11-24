@@ -1,0 +1,138 @@
+.rangeField {
+  width: 100%;
+  position: relative;
+  margin: 20px 0;
+}
+
+.rangeWrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rangeInput {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  background-color: var(--field-color);
+  border-radius: 2px;
+  outline: none;
+  position: relative;
+  z-index: 1;
+}
+
+.rangeInput::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background-color: var(--thumb-color);
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+}
+
+.rangeInput::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background-color: var(--thumb-color);
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+}
+
+.rangeValue {
+  position: absolute;
+  bottom: 25px;
+  transform: translateX(-50%);
+  background-color: white;
+  padding: 5px 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  font-size: 12px;
+  color: var(--thumb-color);
+  transition:
+    transform 0.3s,
+    opacity 0.3s;
+  opacity: 0;
+  z-index: 3;
+}
+
+.rangeValue.active {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-10px);
+}
+
+.error {
+  color: red;
+  margin-top: 5px;
+  font-size: 12px;
+}
+
+/* New input design */
+.numLeft {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.numRight {
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: row-reverse;
+}
+
+.valueDisplay {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-color);
+  background-color: var(--field-color);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: max(var(--height), 3rem);
+  height: var(--height);
+  flex-shrink: 0;
+}
+
+.inputContainer {
+  position: relative;
+  width: 100%;
+  height: var(--height);
+  cursor: pointer;
+}
+
+.field {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  position: relative;
+  touch-action: none;
+}
+
+.fill {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 8px;
+}
+
+.dragValue {
+  position: absolute;
+  background-color: var(--fill-color);
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  top: -4rem;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  pointer-events: none;
+}

@@ -1,0 +1,11 @@
+.section {
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  background-color: rgba(var(--base), 0.15);
+  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-lg);
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid rgba(var(--base-x-light), 0.15);
+}

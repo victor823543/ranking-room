@@ -1,0 +1,57 @@
+.ol {
+  all: unset;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.homeLink {
+  all: unset;
+  color: rgb(var(--primary-mid));
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.homeLink:hover {
+  color: rgb(var(--primary));
+}
+
+.icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.li {
+  all: unset;
+  display: flex;
+  align-items: center;
+}
+
+.chevron {
+  color: rgb(var(--primary-mid));
+}
+
+.link {
+  all: unset;
+  color: rgba(var(--primary), 0.8);
+  margin-left: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.link:hover {
+  color: rgba(var(--primary-light), 0.9);
+}
+
+@media (max-width: 479px) {
+  .link {
+    font-size: 1rem;
+  }
+
+  .icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}

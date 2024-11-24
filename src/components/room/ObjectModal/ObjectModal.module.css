@@ -1,0 +1,28 @@
+.container {
+  min-width: 50rem;
+  min-height: 30rem;
+}
+
+.h1 {
+  font-size: 2rem;
+  color: rgb(var(--base-light));
+  padding-right: 3rem;
+  padding-bottom: 0.25rem;
+  font-weight: 300;
+}
+
+.imgContainer {
+  margin-top: 2rem;
+  width: 10rem;
+  height: 10rem;
+  border-radius: var(--border-radius);
+}
+
+.imgContainer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--border-radius);
+  position: relative;
+  z-index: 30;
+}

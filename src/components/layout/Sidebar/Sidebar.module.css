@@ -1,0 +1,76 @@
+.sidebarWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--sidebar-width);
+  height: 100%;
+  padding: 1rem;
+  box-sizing: border-box;
+  z-index: 100;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--border-radius-sm);
+  background-color: rgba(var(--base-2x-dark), 0.3);
+  backdrop-filter: blur(8px);
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: var(--shadow-md);
+}
+
+.topSection {
+  padding: 1rem;
+}
+
+.logo {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.links {
+  margin-top: 5rem;
+  padding: 0 0.25rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.link {
+  cursor: pointer;
+  width: 100%;
+  margin: 0.25rem 0;
+}
+
+.iconWrapper {
+  width: 100%;
+  padding: 0.75rem 0;
+  color: rgb(var(--base-mid));
+  display: flex;
+  justify-content: center;
+}
+
+.selected .iconWrapper {
+  color: rgb(var(--base-light));
+  border-left: solid 2px rgb(var(--primary-mid));
+}
+
+.iconWrapper > svg {
+  width: 50%;
+}
+
+.bottomSection {
+  margin-top: auto;
+  padding: 1rem;
+}
+
+.account {
+  color: rgb(var(--base-mid));
+}
+
+@media (max-width: 767px) {
+  .sidebarWrapper {
+    display: none;
+  }
+}
