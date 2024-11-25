@@ -9,6 +9,11 @@ export type CreateRoomBody = {
   isPublic?: boolean;
 };
 
+export type UpdateRoomBody = {
+  name?: string;
+  users?: Array<RoomUser>;
+};
+
 export type RoomUser = {
   userId: string;
   privilages: UserPrivilage[];
