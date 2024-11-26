@@ -5,6 +5,7 @@ import ErrorPage from "../../components/common/Error/ErrorPage/ErrorPage";
 import LoadingPage from "../../components/common/Loading/LoadingPage/LoadingPage";
 import Layout from "../../components/layout/Layout/Layout";
 import NameSettings from "../../components/room/NameSettings/NameSettings";
+import SettingsConfirm from "../../components/room/SettingsConfirm/SettingsConfirm";
 import useRoomSettings from "../../hooks/useRoomSettings";
 import { GetRoomResponse } from "../../types/Room";
 import { callAPI } from "../../utils/apiService";
@@ -19,7 +20,8 @@ const RoomSettings = () => {
     queryFn: () => callAPI<GetRoomResponse>(`/rooms/${id}`, "GET"),
   });
 
-  const { fields, setName } = useRoomSettings(data);
+  const { fields, setName, updatedValues, updateSettings } =
+    useRoomSettings(data);
 
   if (error) return <ErrorPage />;
   if (isLoading || data === undefined) return <LoadingPage />;
@@ -36,6 +38,12 @@ const RoomSettings = () => {
             ]}
           />
         </div>
+        {updatedValues && (
+          <SettingsConfirm
+            updateSettings={updateSettings}
+            updatedValues={updatedValues}
+          />
+        )}
         <NameSettings value={fields.name || ""} setValue={setName} />
       </div>
     </Layout>
