@@ -8,7 +8,7 @@ import { callAPI } from "../utils/apiService";
 
 type UserRoomSettingsReturn = {
   updateSettings: () => void;
-  deleteSettings: () => void;
+  deleteRoom: () => void;
   fields: UpdateRoomBody;
   setName: (name: string) => void;
   updatedValues: UpdatedRoomValues | null;
@@ -77,7 +77,7 @@ const useRoomSettings = (
     },
   });
 
-  const deleteSettingsMutation = useMutation({
+  const deleteRoomMutation = useMutation({
     mutationFn: () =>
       room
         ? callAPI(`/rooms/${room.id}`, "DELETE")
@@ -94,11 +94,11 @@ const useRoomSettings = (
     updateSettingsMutation.mutate(fields);
   };
 
-  const deleteSettings = () => {
-    deleteSettingsMutation.mutate();
+  const deleteRoom = () => {
+    deleteRoomMutation.mutate();
   };
 
-  return { updateSettings, deleteSettings, fields, setName, updatedValues };
+  return { updateSettings, deleteRoom, fields, setName, updatedValues };
 };
 
 const checkValues = (

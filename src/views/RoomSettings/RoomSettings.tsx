@@ -4,6 +4,7 @@ import Breadcrumbs from "../../components/common/Breadcrumbs/Breadcrumbs";
 import ErrorPage from "../../components/common/Error/ErrorPage/ErrorPage";
 import LoadingPage from "../../components/common/Loading/LoadingPage/LoadingPage";
 import Layout from "../../components/layout/Layout/Layout";
+import DeleteRoom from "../../components/room/DeleteRoom/DeleteRoom";
 import NameSettings from "../../components/room/NameSettings/NameSettings";
 import SettingsConfirm from "../../components/room/SettingsConfirm/SettingsConfirm";
 import useRoomSettings from "../../hooks/useRoomSettings";
@@ -20,7 +21,7 @@ const RoomSettings = () => {
     queryFn: () => callAPI<GetRoomResponse>(`/rooms/${id}`, "GET"),
   });
 
-  const { fields, setName, updatedValues, updateSettings } =
+  const { fields, setName, updatedValues, updateSettings, deleteRoom } =
     useRoomSettings(data);
 
   if (error) return <ErrorPage />;
@@ -45,6 +46,7 @@ const RoomSettings = () => {
           />
         )}
         <NameSettings value={fields.name || ""} setValue={setName} />
+        <DeleteRoom deleteRoom={deleteRoom} />
       </div>
     </Layout>
   );
