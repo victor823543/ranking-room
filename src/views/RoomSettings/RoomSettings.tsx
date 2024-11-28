@@ -6,6 +6,7 @@ import LoadingPage from "../../components/common/Loading/LoadingPage/LoadingPage
 import Layout from "../../components/layout/Layout/Layout";
 import DeleteRoom from "../../components/room/DeleteRoom/DeleteRoom";
 import NameSettings from "../../components/room/NameSettings/NameSettings";
+import RoomUserSettings from "../../components/room/RoomUserSettings/RoomUserSettings";
 import SettingsConfirm from "../../components/room/SettingsConfirm/SettingsConfirm";
 import useRoomSettings from "../../hooks/useRoomSettings";
 import { GetRoomResponse } from "../../types/Room";
@@ -21,8 +22,16 @@ const RoomSettings = () => {
     queryFn: () => callAPI<GetRoomResponse>(`/rooms/${id}`, "GET"),
   });
 
-  const { fields, setName, updatedValues, updateSettings, deleteRoom } =
-    useRoomSettings(data);
+  const {
+    fields,
+    setName,
+    updatedValues,
+    updateSettings,
+    deleteRoom,
+    addUser,
+    deleteUser,
+    changeRole,
+  } = useRoomSettings(data);
 
   if (error) return <ErrorPage />;
   if (isLoading || data === undefined) return <LoadingPage />;
@@ -46,6 +55,12 @@ const RoomSettings = () => {
           />
         )}
         <NameSettings value={fields.name || ""} setValue={setName} />
+        <RoomUserSettings
+          users={fields.users}
+          addUser={addUser}
+          changeRole={changeRole}
+          deleteUser={deleteUser}
+        />
         <DeleteRoom deleteRoom={deleteRoom} />
       </div>
     </Layout>

@@ -1,28 +1,76 @@
 import { useMutation } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../provider/authProvider";
-import { GetRoomResponse, UpdateRoomBody } from "../types/Room";
+import {
+  GetRoomResponse,
+  RoomUser,
+  RoomUserExtended,
+  UpdateRoomBody,
+  UserRole,
+} from "../types/Room";
 import { User } from "../types/User";
 import { callAPI } from "../utils/apiService";
 
 type UserRoomSettingsReturn = {
   updateSettings: () => void;
   deleteRoom: () => void;
-  fields: UpdateRoomBody;
+  fields: FieldsType;
   setName: (name: string) => void;
+  addUser: (user: RoomUserExtended) => void;
+  deleteUser: (userId: string) => void;
+  changeRole: (userId: string, role: UserRole) => void;
   updatedValues: UpdatedRoomValues | null;
+};
+
+type FieldsType = {
+  name: string;
+  users: RoomUserExtended[];
 };
 
 type UpdatedUser = {
   userId: string;
-  name: { content: string; isUpdated: boolean };
-  role: { content: string; isUpdated: boolean };
+  name: { content: string; status: "updated" | "deleted" | "same" };
+  role: { content: string; status: "updated" | "deleted" | "same" };
 };
 
 export type UpdatedRoomValues = {
   name?: { content: string; isUpdated: boolean };
   users?: UpdatedUser[];
+};
+
+type FieldsAction =
+  | { type: "SET_NAME"; payload: string }
+  | { type: "ADD_USER"; payload: RoomUserExtended }
+  | { type: "DELETE_USER"; payload: string }
+  | { type: "CHANGE_ROLE"; payload: { userId: string; role: UserRole } }
+  | { type: "SET_USERS"; payload: RoomUserExtended[] };
+
+const fieldsReducer = (state: FieldsType, action: FieldsAction): FieldsType => {
+  switch (action.type) {
+    case "SET_NAME":
+      return { ...state, name: action.payload };
+    case "ADD_USER":
+      return { ...state, users: [...state.users, action.payload] };
+    case "DELETE_USER":
+      return {
+        ...state,
+        users: state.users.filter((user) => user.userId !== action.payload),
+      };
+    case "CHANGE_ROLE":
+      return {
+        ...state,
+        users: state.users.map((user) =>
+          user.userId === action.payload.userId
+            ? { ...user, role: action.payload.role }
+            : user,
+        ),
+      };
+    case "SET_USERS":
+      return { ...state, users: action.payload };
+    default:
+      return state;
+  }
 };
 
 const useRoomSettings = (
@@ -31,7 +79,7 @@ const useRoomSettings = (
   const navigate = useNavigate();
   const { user: thisUser } = useAuth();
 
-  const [fields, setFields] = useState<UpdateRoomBody>({
+  const [fields, dispatch] = useReducer(fieldsReducer, {
     name: "",
     users: [],
   });
@@ -42,19 +90,25 @@ const useRoomSettings = (
   // Set the fields to the room data when the room is loaded
   useEffect(() => {
     if (room) {
-      setFields({
-        name: room.name,
-        users: room.users.map((user) => ({
-          userId: user.userId,
-          privilages: user.privilages,
-          role: user.role,
-        })),
-      });
+      dispatch({ type: "SET_NAME", payload: room.name });
+      dispatch({ type: "SET_USERS", payload: room.users });
     }
   }, [room]);
 
   const setName = (name: string) => {
-    setFields((prev) => ({ ...prev, name }));
+    dispatch({ type: "SET_NAME", payload: name });
+  };
+
+  const addUser = (user: RoomUserExtended) => {
+    dispatch({ type: "ADD_USER", payload: user });
+  };
+
+  const deleteUser = (userId: string) => {
+    dispatch({ type: "DELETE_USER", payload: userId });
+  };
+
+  const changeRole = (userId: string, role: UserRole) => {
+    dispatch({ type: "CHANGE_ROLE", payload: { userId, role } });
   };
 
   useEffect(() => {
@@ -91,18 +145,32 @@ const useRoomSettings = (
   });
 
   const updateSettings = () => {
-    updateSettingsMutation.mutate(fields);
+    const getBodyUsers: RoomUser[] = fields.users.map((user) => ({
+      userId: user.userId,
+      role: user.role,
+      privilages: user.privilages,
+    }));
+    updateSettingsMutation.mutate({ name: fields.name, users: getBodyUsers });
   };
 
   const deleteRoom = () => {
     deleteRoomMutation.mutate();
   };
 
-  return { updateSettings, deleteRoom, fields, setName, updatedValues };
+  return {
+    updateSettings,
+    deleteRoom,
+    fields,
+    setName,
+    updatedValues,
+    addUser,
+    deleteUser,
+    changeRole,
+  };
 };
 
 const checkValues = (
-  body: UpdateRoomBody,
+  body: FieldsType,
   room: GetRoomResponse | undefined,
   thisUser: User | null | undefined,
 ): UpdatedRoomValues | null => {
@@ -123,8 +191,8 @@ const checkValues = (
     let updatedCount = 0;
     const currentUsers: UpdatedUser[] = room.users.map((user) => ({
       userId: user.userId,
-      name: { content: user.username, isUpdated: false },
-      role: { content: user.role, isUpdated: false },
+      name: { content: user.username, status: "same" },
+      role: { content: user.role, status: "same" },
     }));
 
     body.users.forEach((user) => {
@@ -134,20 +202,32 @@ const checkValues = (
 
       if (currentUser) {
         if (currentUser.role.content !== user.role) {
-          currentUser.role = { content: user.role, isUpdated: true };
+          currentUser.role = { content: user.role, status: "updated" };
           updatedCount++;
         }
       } else {
         currentUsers.push({
           userId: user.userId,
           name: {
-            content:
-              room.users.find((u) => user.userId === u.userId)?.username || "",
-            isUpdated: false,
+            content: user.username,
+            status: "updated",
           },
-          role: { content: user.role, isUpdated: true },
+          role: { content: user.role, status: "updated" },
         });
         updatedCount++;
+      }
+    });
+
+    room.users.forEach((user) => {
+      if (!body.users.find((u) => u.userId === user.userId)) {
+        const currentUser = currentUsers.find(
+          (current) => current.userId === user.userId,
+        );
+        if (currentUser) {
+          currentUser.name = { content: user.username, status: "deleted" };
+          currentUser.role = { content: user.role, status: "deleted" };
+          updatedCount++;
+        }
       }
     });
 

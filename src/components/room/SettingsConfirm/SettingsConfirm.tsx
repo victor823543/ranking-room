@@ -1,5 +1,6 @@
 import React from "react";
 import { UpdatedRoomValues } from "../../../hooks/useRoomSettings";
+import { convertUserRoleToLabel, UserRole } from "../../../types/Room";
 import CustomizableButton from "../../common/Buttons/CustomizableButton";
 import Divider from "../../common/Dividers/Dividers";
 import styles from "./SettingsConfirm.module.css";
@@ -29,14 +30,22 @@ const SettingsConfirm: React.FC<SettingsConfirmProps> = ({
         <>
           <Divider color="rgba(var(--base), 0.5)" />
           <p>Users:</p>
-          <ul>
+          <ul className={styles.userList}>
             {updatedValues.users.map((user) => (
               <li key={user.userId}>
-                <span className={user.name.isUpdated ? styles.updated : ""}>
+                <span
+                  className={
+                    user.name.status !== "same" ? styles[user.name.status] : ""
+                  }
+                >
                   {user.name.content} -{" "}
                 </span>
-                <span className={user.role.isUpdated ? styles.updated : ""}>
-                  {user.role.content}
+                <span
+                  className={
+                    user.role.status !== "same" ? styles[user.role.status] : ""
+                  }
+                >
+                  {convertUserRoleToLabel[user.role.content as UserRole]}
                 </span>
               </li>
             ))}

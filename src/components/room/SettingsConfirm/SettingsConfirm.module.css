@@ -24,3 +24,14 @@
 .updated {
   color: rgb(var(--emerald));
 }
+
+.deleted {
+  color: rgb(var(--red));
+  text-decoration: line-through;
+}
+
+.userList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
