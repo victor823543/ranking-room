@@ -41,6 +41,12 @@ const NameSettings: React.FC<NameSettingsProps> = ({ value, setValue }) => {
     setValue(data.name);
   };
 
+  const handleChange = (value: string) => {
+    if (form.formState.isValid) {
+      setValue(value);
+    }
+  };
+
   return (
     <SettingsStep title="Room name">
       <form onSubmit={form.handleSubmit(handleSubmit)}>
@@ -48,6 +54,7 @@ const NameSettings: React.FC<NameSettingsProps> = ({ value, setValue }) => {
           form={form}
           name="name"
           placeholder="Room name"
+          onInputChange={handleChange}
           icon={<ChevronRightIcon strokeWidth={3} />}
         />
       </form>
