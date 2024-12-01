@@ -12,3 +12,28 @@
   color: rgb(var(--base));
   margin-top: 0.5rem;
 }
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.settingsBtn {
+  width: 3rem;
+  color: rgb(var(--base-light));
+  padding: 0.25rem;
+  border-radius: var(--border-radius);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.2s;
+}
+
+.settingsBtn:hover {
+  background-color: rgba(var(--base), 0.1);
+}
+
+.settingsBtn svg {
+  stroke-width: 1px;
+  cursor: pointer;
+}

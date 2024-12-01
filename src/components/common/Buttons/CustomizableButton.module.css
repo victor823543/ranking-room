@@ -82,13 +82,13 @@
 }
 
 .warning {
-  background-color: var(--red-x-light);
-  color: var(--red-x-dark);
+  background-color: rgb(var(--red-x-light));
+  color: rgb(var(--red-x-dark));
   border: none;
 }
 
 .warning:hover {
-  background-color: var(--red-light);
+  background-color: rgb(var(--red-light));
 }
 
 .strong-warning {

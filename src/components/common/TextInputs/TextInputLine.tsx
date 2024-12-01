@@ -11,6 +11,7 @@ type TextInputLineProps<TFieldValues extends FieldValues> = {
   autoComplete?: "off" | "new-password" | "current-password";
   form: UseFormReturn<TFieldValues>;
   placeholder: string;
+  onInputChange?: (value: string) => void;
   icon?: React.ReactNode;
   color?: string;
   dataCy?: string;
@@ -22,6 +23,7 @@ const TextInputLine = <TFieldValues extends FieldValues>({
   autoComplete = "off",
   form,
   placeholder,
+  onInputChange,
   color = "rgb(var(--base))",
   dataCy,
   icon,
@@ -78,7 +80,10 @@ const TextInputLine = <TFieldValues extends FieldValues>({
               ref={ref}
               value={value}
               placeholder=""
-              onChange={(e) => onChange(e.target.value)}
+              onChange={(e) => {
+                onChange(e.target.value);
+                onInputChange?.(e.target.value);
+              }}
               onFocus={() => setInputFocus(true)}
               onBlur={() => {
                 onBlur();

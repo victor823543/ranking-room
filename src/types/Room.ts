@@ -9,13 +9,18 @@ export type CreateRoomBody = {
   isPublic?: boolean;
 };
 
+export type UpdateRoomBody = {
+  name?: string;
+  users?: Array<RoomUser>;
+};
+
 export type RoomUser = {
   userId: string;
   privilages: UserPrivilage[];
   role: UserRole;
 };
 
-type RoomUserExtended = RoomUser & {
+export type RoomUserExtended = RoomUser & {
   username: string;
 };
 
@@ -113,6 +118,7 @@ export const convertUserRoleToLabel = {
   [UserRole.CONTRIBUTOR]: "Contributor",
   [UserRole.USER]: "User",
   [UserRole.VIEW_ONLY]: "Viewer",
+  [UserRole.CUSTOM]: "Custom",
 };
 
 export type RankObjectsBody =

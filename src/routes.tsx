@@ -9,6 +9,7 @@ import NotFound from "./views/NotFound";
 import Rank from "./views/Rank/Rank";
 import Room from "./views/Room";
 import Rooms from "./views/Rooms";
+import RoomSettings from "./views/RoomSettings/RoomSettings";
 import Settings from "./views/Settings";
 import Signup from "./views/Signup";
 import Social from "./views/Social";
@@ -52,6 +53,10 @@ const Routes = () => {
         {
           path: "/rooms/:id/rank",
           element: <Rank />,
+        },
+        {
+          path: "/rooms/:id/settings",
+          element: <RoomSettings />,
         },
         {
           path: "/social",

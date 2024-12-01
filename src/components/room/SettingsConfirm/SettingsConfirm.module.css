@@ -1,0 +1,37 @@
+.box {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  z-index: 1000;
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  width: 15rem;
+  background-color: rgba(var(--base-dark), 0.3);
+  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  color: rgb(var(--base-light));
+}
+
+.h3 {
+  font-size: 1.4rem;
+  font-weight: 300;
+  text-decoration: underline 1px rgb(var(--primary-light));
+}
+
+.updated {
+  color: rgb(var(--emerald));
+}
+
+.deleted {
+  color: rgb(var(--red));
+  text-decoration: line-through;
+}
+
+.userList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
