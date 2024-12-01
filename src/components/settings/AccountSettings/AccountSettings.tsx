@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { Alert, ErrorAlert, SuccessAlert } from "../../../hooks/useAlerts";
-import useLogout from "../../../hooks/useLogout";
 import { useAuth } from "../../../provider/authProvider";
 import { callAPI } from "../../../utils/apiService";
 import CustomizableButton from "../../common/Buttons/CustomizableButton";
@@ -49,7 +48,6 @@ type AccountSettingsProps = {
 const AccountSettings: React.FC<AccountSettingsProps> = ({ pushAlert }) => {
   const { user, setToken } = useAuth();
   const [disableUpdate, setDisableUpdate] = useState(true);
-  const logout = useLogout();
   const form = useForm<UpdateAccountFormFields>({
     mode: "onChange",
     reValidateMode: "onChange",
