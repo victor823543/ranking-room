@@ -23,7 +23,7 @@ const ThemeSettings = () => {
   const { setColorTheme, color } = useTheme();
   return (
     <div className={styles.container}>
-      <Header center={false} variant="gridbox">
+      <Header as="h2" center={false} variant="gridbox">
         Color Theme
       </Header>
       <Divider thickness="1px" color="rgba(var(--base), 0.5)" margin="1rem" />
