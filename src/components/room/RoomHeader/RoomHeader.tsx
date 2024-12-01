@@ -1,4 +1,6 @@
+import { Cog6ToothIcon } from "@heroicons/react/24/outline";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import {
   convertRankingSystemToLabel,
   RankingSystem,
@@ -22,24 +24,32 @@ const RoomHeader: React.FC<RoomHeaderProps> = ({
   rankingSystem,
   userRole,
 }) => {
+  const navigate = useNavigate();
   return (
     <div className={styles.container}>
-      <div className={styles.breadcrumbsContainer}>
-        <Breadcrumbs
-          items={[
-            { name: "Rooms", href: "/rooms" },
-            { name: name, href: `/rooms/${id}` },
-          ]}
-        />
-        <Divider margin="1rem" color="rgb(var(--base))" />
+      <div className={styles.leftContainer}>
+        <div className={styles.breadcrumbsContainer}>
+          <Breadcrumbs
+            items={[
+              { name: "Rooms", href: "/rooms" },
+              { name: name, href: `/rooms/${id}` },
+            ]}
+          />
+          <Divider margin="1rem" color="rgb(var(--base))" />
+        </div>
+        <Header center={false} as="h1">
+          {name}
+        </Header>
+        <Header center={false} as="h2" variant="secondary">
+          {convertRankingSystemToLabel[rankingSystem]}
+        </Header>
+        <p className={styles.p}>{`Your role: ${userRole}`}</p>
       </div>
-      <Header center={false} as="h1">
-        {name}
-      </Header>
-      <Header center={false} as="h2" variant="secondary">
-        {convertRankingSystemToLabel[rankingSystem]}
-      </Header>
-      <p className={styles.p}>{`Your role: ${userRole}`}</p>
+      <div className={styles.rightContainer}>
+        <button className={styles.settingsBtn}>
+          <Cog6ToothIcon onClick={() => navigate("settings")} />
+        </button>
+      </div>
     </div>
   );
 };
