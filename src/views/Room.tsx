@@ -97,6 +97,9 @@ const Room = () => {
           currentView={view}
           onWrapperClick={removeParam}
           object={currentObject}
+          totalObjects={data.objects.length}
+          rankingSystem={data.rankingSystem}
+          roomUsers={data.users}
         />
       )}
     </Layout>
