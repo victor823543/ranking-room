@@ -44,6 +44,7 @@ const ObjectModal: React.FC<ObjectModalProps> = ({
   currentView,
   rankingSystem,
   roomUsers,
+  totalObjects,
 }) => {
   const queryClient = useQueryClient();
   const { hasParam, addParam, removeParam } =
@@ -186,6 +187,7 @@ const ObjectModal: React.FC<ObjectModalProps> = ({
                       roomUsers.find((u) => u.userId === ranking.user)
                         ?.username || ""
                     }
+                    totalObjects={totalObjects}
                   />
                 ))}
               </div>
@@ -212,7 +214,7 @@ type UserRankingProps = {
   rankingSystem: RankingSystem;
   ranking: ObjectRanking;
   username: string;
-  totalObjects?: number;
+  totalObjects: number;
 };
 
 const UserRanking: React.FC<UserRankingProps> = ({
@@ -233,8 +235,8 @@ const UserRanking: React.FC<UserRankingProps> = ({
       max = 10;
       break;
     case RankingSystem.RANK:
-      value = ranking.rank as number;
-      max = totalObjects || 5;
+      value = totalObjects - (ranking.rank as number) + 1;
+      max = totalObjects;
       break;
   }
 
@@ -243,7 +245,7 @@ const UserRanking: React.FC<UserRankingProps> = ({
       <h3 className={styles.username}>{username}</h3>
       <p className={styles.rankingValue}>
         {rankingSystem === RankingSystem.RANK
-          ? getOrdinalSuffix(value)
+          ? getOrdinalSuffix(ranking.rank as number)
           : `${value} / ${max}`}
       </p>
       <ProgressBar value={value} max={max} />
