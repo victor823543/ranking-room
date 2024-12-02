@@ -54,7 +54,7 @@ const Room = () => {
   );
 
   if (error) return <ErrorPage />;
-  if (isLoading || data === undefined) return <LoadingPage />;
+  if (isLoading || data === undefined) return <LoadingPage name="Rooms" />;
 
   return (
     <Layout name="Rooms">

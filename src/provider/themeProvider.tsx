@@ -2,7 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 
 // Define the types for the theme context state
 type ThemeMode = "light" | "dark";
-type ThemeColor =
+export type ThemeColor =
   | "blue"
   | "green"
   | "yellow"
@@ -10,7 +10,7 @@ type ThemeColor =
   | "teal"
   | "cyan"
   | "purple"
-  | "pink"
+  | "sky"
   | "red"
   | "orange"
   | "indigo"
@@ -45,7 +45,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
   const storedMode =
     (localStorage.getItem("theme-mode") as ThemeMode) || "dark";
   const storedColor =
-    (localStorage.getItem("theme-color") as ThemeColor) || "amber";
+    (localStorage.getItem("theme-color") as ThemeColor) || "indigo";
 
   // State for theme mode and color
   const [mode, setMode] = useState<ThemeMode>(storedMode);
@@ -71,7 +71,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
       "theme-teal",
       "theme-cyan",
       "theme-purple",
-      "theme-pink",
+      "theme-sky",
       "theme-red",
       "theme-orange",
       "theme-indigo",

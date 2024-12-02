@@ -40,7 +40,7 @@ const Social = () => {
     friendList === undefined ||
     friendRequests === undefined
   )
-    return <LoadingPage />;
+    return <LoadingPage name="Social" />;
 
   return (
     <Layout name="Social">

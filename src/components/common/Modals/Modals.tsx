@@ -116,7 +116,7 @@ export const OpaqueModal = createModal({
 
 export const WarningModal = createModal({
   borderRadius: ".75rem",
-  backgroundColor: "var(--red)",
-  padding: "2rem",
+  backgroundColor: "rgba(var(--red-3x-dark), 0.8)",
+  padding: "3rem",
   boxShadow: "var(--shadow-lg)",
 });

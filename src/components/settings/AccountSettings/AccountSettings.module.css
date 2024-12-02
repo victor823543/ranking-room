@@ -1,0 +1,41 @@
+.container {
+  padding: 0.5rem 1rem;
+  height: 100%;
+  box-sizing: border-box;
+  overflow-y: scroll;
+}
+
+.header {
+  margin-bottom: 1rem;
+}
+
+.settingsStep {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  padding: 2.5rem 0;
+  position: relative;
+}
+
+.stepTitle {
+  font-size: 1rem;
+  font-weight: 500;
+  color: rgb(var(--base-light));
+}
+
+.stepDivider {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 90%;
+  height: 1px;
+  background-image: linear-gradient(
+    to right,
+    rgba(var(--base), 0.8),
+    rgba(var(--base), 0)
+  );
+}
+
+.submitButton {
+  margin-top: 1.75rem;
+}

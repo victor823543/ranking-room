@@ -10,7 +10,7 @@ import Rank from "./views/Rank/Rank";
 import Room from "./views/Room";
 import Rooms from "./views/Rooms";
 import RoomSettings from "./views/RoomSettings/RoomSettings";
-import Settings from "./views/Settings";
+import Settings from "./views/Settings/Settings";
 import Signup from "./views/Signup";
 import Social from "./views/Social";
 
