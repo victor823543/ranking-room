@@ -1,4 +1,7 @@
-import { PlusIcon } from "@heroicons/react/24/outline";
+import {
+  ArrowRightStartOnRectangleIcon,
+  PlusIcon,
+} from "@heroicons/react/24/outline";
 import {
   ChatBubbleLeftRightIcon,
   Cog6ToothIcon,
@@ -40,11 +43,7 @@ const Sidebar: React.FC<SidebarProps> = ({ selected }) => {
     <div className={styles.sidebarWrapper}>
       <div className={styles.sidebar}>
         <div className={styles.topSection}>
-          <div
-            className={styles.logo}
-            aria-label="Logo"
-            onClick={() => logout()}
-          >
+          <div className={styles.logo} aria-label="Logo">
             <Logo />
           </div>
         </div>
@@ -56,6 +55,14 @@ const Sidebar: React.FC<SidebarProps> = ({ selected }) => {
               {...link}
             />
           ))}
+          <div className={styles.link} onClick={() => logout()}>
+            <div className={styles.iconWrapper} aria-label="Logout icon">
+              <ArrowRightStartOnRectangleIcon
+                strokeWidth={2}
+                style={{ position: "relative", left: "2px" }}
+              />
+            </div>
+          </div>
         </nav>
         <div className={styles.bottomSection}>
           <Link to={"/account"} className={styles.account}>
