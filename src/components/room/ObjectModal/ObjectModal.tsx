@@ -1,6 +1,7 @@
 import { ArrowLongRightIcon } from "@heroicons/react/24/outline";
 import { PhotoIcon } from "@heroicons/react/24/solid";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -13,6 +14,7 @@ import {
   RankingSystem,
   RoomUserExtended,
 } from "../../../types/Room";
+import { callAPI } from "../../../utils/apiService";
 import { getOrdinalSuffix } from "../../../utils/functions/numberFunctions";
 import CustomizableButton from "../../common/Buttons/CustomizableButton";
 import Divider from "../../common/Dividers/Dividers";
@@ -22,7 +24,7 @@ import ProgressBar from "../../common/Progress/ProgressBar/ProgressBar";
 import styles from "./ObjectModal.module.css";
 
 type ObjectModalProps = {
-  onWrapperClick?: () => void;
+  onWrapperClick: () => void;
   object: Object;
   currentView: string;
   totalObjects: number;
@@ -43,6 +45,7 @@ const ObjectModal: React.FC<ObjectModalProps> = ({
   rankingSystem,
   roomUsers,
 }) => {
+  const queryClient = useQueryClient();
   const { hasParam, addParam, removeParam } =
     useHandleSearchParam("select-image");
 
@@ -52,6 +55,24 @@ const ObjectModal: React.FC<ObjectModalProps> = ({
     criteriaMode: "all",
     resolver: yupResolver(schema),
   });
+
+  const updateMutation = useMutation({
+    mutationFn: ({ image }: FormFields) =>
+      callAPI<{ roomId: string }>(`/objects/update/${object._id}`, "PUT", {
+        image: image,
+      }),
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ["room", data.roomId] });
+      onWrapperClick();
+    },
+    onError: (err) => {
+      console.log(err);
+    },
+  });
+
+  const handleSubmit = (data: FormFields) => {
+    updateMutation.mutate(data);
+  };
 
   return (
     <>
@@ -143,7 +164,10 @@ const ObjectModal: React.FC<ObjectModalProps> = ({
                     <AddImageSvg />
                   </motion.button>
                   {form.getValues("image") && (
-                    <CustomizableButton variant="primary">
+                    <CustomizableButton
+                      variant="primary"
+                      onClick={form.handleSubmit(handleSubmit)}
+                    >
                       Confirm
                     </CustomizableButton>
                   )}
