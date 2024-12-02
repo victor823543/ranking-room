@@ -126,7 +126,23 @@ const ObjectModal: React.FC<ObjectModalProps> = ({
                       alt={object.name}
                     />
                   ) : (
-                    <PhotoIcon />
+                    <motion.div
+                      className={styles.photoIconWrapper}
+                      layoutId={`img-${object.name}-${currentView}`}
+                      initial={{ width: "10rem", height: "10rem" }}
+                      animate={
+                        form.getValues("image")
+                          ? { width: "5rem", height: "5rem" }
+                          : { width: "10rem", height: "10rem" }
+                      }
+                      transition={{
+                        layout: {
+                          duration: 0.5,
+                        },
+                      }}
+                    >
+                      <PhotoIcon />
+                    </motion.div>
                   )}
                   {form.getValues("image") && (
                     <>

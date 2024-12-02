@@ -45,6 +45,19 @@
   z-index: 30;
 }
 
+.photoIconWrapper {
+  position: relative;
+  width: 10rem;
+  height: 10rem;
+  color: rgb(var(--base-light));
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  background-color: rgb(var(--base-dark));
+  padding: 0.25rem;
+  box-sizing: border-box;
+  z-index: 10;
+}
+
 .imgBtn {
   width: 4rem;
   height: 4rem;

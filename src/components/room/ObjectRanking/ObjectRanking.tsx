@@ -135,9 +135,17 @@ const renderObjects = (
               alt={object.name}
             />
           ) : (
-            <div className={styles.imgContainer}>
+            <motion.div
+              className={styles.imgContainer}
+              layoutId={`img-${object.name}-${view}`}
+              transition={{
+                layout: {
+                  duration: 0.5,
+                },
+              }}
+            >
               <PhotoIcon />
-            </div>
+            </motion.div>
           )}
 
           <motion.p
@@ -158,6 +166,8 @@ const renderObjects = (
     </>
   );
 };
+
+const MotionPhotoIcon = motion.create(PhotoIcon, { forwardMotionProps: true });
 
 const getUserRankingValue = (
   objectRanking: ObjectRankingT[],
