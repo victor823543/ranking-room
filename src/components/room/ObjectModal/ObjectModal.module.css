@@ -1,6 +1,8 @@
 .container {
   min-width: 50rem;
   min-height: 30rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .h1 {
@@ -11,18 +13,110 @@
   font-weight: 300;
 }
 
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 2rem;
+  flex: 1;
+}
+
+.selectImage {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .imgContainer {
   margin-top: 2rem;
-  width: 10rem;
-  height: 10rem;
-  border-radius: var(--border-radius);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .imgContainer img {
-  width: 100%;
-  height: 100%;
+  width: 10rem;
+  height: 10rem;
   object-fit: cover;
   border-radius: var(--border-radius);
   position: relative;
   z-index: 30;
+}
+
+.imgBtn {
+  width: 4rem;
+  height: 4rem;
+  position: relative;
+  color: rgb(var(--base-light));
+  background-color: rgba(var(--base-light), 0.2);
+  border-radius: var(--border-radius);
+}
+
+.imgBtn > svg {
+  fill: rgb(var(--base));
+}
+
+.imgBtn > img {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  object-fit: cover;
+  border-radius: var(--border-radius);
+  border: solid 5px rgba(var(--base-light), 0.2);
+}
+
+.arrowContainer {
+  width: 3rem;
+  color: rgba(var(--base-light), 0.7);
+}
+
+.lowerSection {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.displayRanking {
+  overflow-y: scroll;
+}
+
+.h2 {
+  font-size: 1.2rem;
+  color: rgb(var(--base-light));
+  font-weight: 300;
+}
+
+.userRanking {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.username {
+  font-size: 1rem;
+  color: rgb(var(--base-light));
+  font-weight: 500;
+}
+
+.rankingValue {
+  font-size: 1rem;
+  padding: 6px;
+  border-radius: 3px;
+  background-color: rgba(var(--primary), 0.2);
+  width: fit-content;
+  color: rgb(var(--base-light));
+  font-weight: 500;
+}
+
+.fadeDivider {
+  height: 1px;
+  width: 90%;
+  background-image: linear-gradient(
+    to right,
+    rgba(var(--primary), 1),
+    transparent
+  );
+  margin: 1rem 0;
 }

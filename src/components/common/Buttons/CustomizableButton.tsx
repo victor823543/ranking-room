@@ -21,6 +21,9 @@ export interface CustomizableButtonProps
 
   /** The width of the button. Options are 'full' or 'default'. */
   width?: ButtonWidth;
+
+  /** Whether the button should animate in */
+  animate?: boolean;
 }
 
 /**
@@ -47,6 +50,7 @@ const CustomizableButton: React.FC<CustomizableButtonProps> = ({
   variant = "default",
   size = "base",
   width = "default",
+  animate = false,
   ...rest
 }) => {
   return (
