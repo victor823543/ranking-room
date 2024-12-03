@@ -67,6 +67,7 @@ const Room = () => {
             rankingSystem={data.rankingSystem}
             userRole={userRole}
             isPinned={data.isPinned}
+            isLiked={data.likedBy.includes(user._id)}
           />
         }
         topRightTallBase={

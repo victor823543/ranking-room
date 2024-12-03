@@ -40,6 +40,14 @@
 }
 
 .settingsBtn svg {
-  stroke-width: 1.2px;
+  stroke-width: 1.3px;
   cursor: pointer;
+}
+
+.notLiked svg {
+  fill: none;
+}
+
+.liked svg {
+  fill: rgb(var(--base-light));
 }

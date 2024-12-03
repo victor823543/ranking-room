@@ -1,4 +1,4 @@
-import { Cog6ToothIcon } from "@heroicons/react/24/outline";
+import { Cog6ToothIcon, HeartIcon } from "@heroicons/react/24/outline";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React from "react";
 import { useNavigate } from "react-router-dom";
@@ -21,6 +21,7 @@ type RoomHeaderProps = {
   rankingSystem: RankingSystem;
   userRole: UserRole;
   isPinned: boolean;
+  isLiked: boolean;
 };
 
 const RoomHeader: React.FC<RoomHeaderProps> = ({
@@ -29,13 +30,23 @@ const RoomHeader: React.FC<RoomHeaderProps> = ({
   rankingSystem,
   userRole,
   isPinned,
+  isLiked,
 }) => {
   const queryClient = useQueryClient();
   const pinMutation = useMutation({
     mutationFn: (id: string) => callAPI(`/rooms/${id}/pin`, "POST"),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["room", id] });
-      console.log("Pinned room");
+    },
+    onError: (error) => {
+      console.error(error);
+    },
+  });
+
+  const likeMutation = useMutation({
+    mutationFn: (id: string) => callAPI(`/rooms/${id}/like`, "POST"),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["room", id] });
     },
     onError: (error) => {
       console.error(error);
@@ -73,6 +84,12 @@ const RoomHeader: React.FC<RoomHeaderProps> = ({
           onClick={() => pinMutation.mutate(id)}
         >
           {isPinned ? <UnpinSvg /> : <PinSvg />}
+        </button>
+        <button
+          className={`${styles.settingsBtn} ${isLiked ? styles.liked : styles.notLiked}`}
+          onClick={() => likeMutation.mutate(id)}
+        >
+          {isLiked ? <HeartIcon /> : <HeartIcon />}
         </button>
       </div>
     </div>
