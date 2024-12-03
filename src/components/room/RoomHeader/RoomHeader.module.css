@@ -18,6 +18,12 @@
   justify-content: space-between;
 }
 
+.rightContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 .settingsBtn {
   width: 3rem;
   color: rgb(var(--base-light));
@@ -34,6 +40,6 @@
 }
 
 .settingsBtn svg {
-  stroke-width: 1px;
+  stroke-width: 1.2px;
   cursor: pointer;
 }
