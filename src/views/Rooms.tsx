@@ -4,6 +4,7 @@ import LoadingPage from "../components/common/Loading/LoadingPage/LoadingPage";
 import Section from "../components/common/Sections/Sections";
 import { GridLayout } from "../components/layout/GridLayout/GridLayout";
 import Layout from "../components/layout/Layout/Layout";
+import CreateNew from "../components/rooms/CreateNew/CreateNew";
 import RoomList from "../components/rooms/RoomList/RoomList";
 import RoomsHeader from "../components/rooms/RoomsHeader/RoomsHeader";
 import { ListRoomsResponse } from "../types/Room";
@@ -29,7 +30,11 @@ const Rooms = () => {
         }
         bottomLeftBaseNarrow={<Section>Test</Section>}
         midInnerShortNarrow={<Section>Test</Section>}
-        bottomInnerShortNarrow={<Section>Test</Section>}
+        bottomInnerShortNarrow={
+          <Section>
+            <CreateNew />
+          </Section>
+        }
       />
     </Layout>
   );
