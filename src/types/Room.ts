@@ -67,6 +67,22 @@ export type ObjectRanking = {
   categoryRanking?: Record<string, number>;
 };
 
+export type TemplateObject = {
+  name: string;
+  image: string;
+};
+
+export type Template = {
+  _id: string;
+  name: string;
+  rankingSystems: RankingSystem[];
+  maxPoints?: number;
+  categories?: string[];
+  tierNames?: string[];
+  objects: Array<TemplateObject>;
+  timestamp: number;
+};
+
 export enum UserPrivilage {
   INVITE = "INVITE",
   EDIT = "EDIT",

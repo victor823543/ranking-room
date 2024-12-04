@@ -4,6 +4,7 @@ import LoadingPage from "../components/common/Loading/LoadingPage/LoadingPage";
 import Section from "../components/common/Sections/Sections";
 import { GridLayout } from "../components/layout/GridLayout/GridLayout";
 import Layout from "../components/layout/Layout/Layout";
+import CreateFromTemplate from "../components/rooms/CreateFromTemplate/CreateFromTemplate";
 import CreateNew from "../components/rooms/CreateNew/CreateNew";
 import PinnedRoom from "../components/rooms/PinnedRoom/PinnedRoom";
 import RoomList from "../components/rooms/RoomList/RoomList";
@@ -29,7 +30,11 @@ const Rooms = () => {
             <RoomList rooms={data} />
           </Section>
         }
-        bottomLeftBaseNarrow={<Section>Test</Section>}
+        bottomLeftBaseNarrow={
+          <Section>
+            <CreateFromTemplate />
+          </Section>
+        }
         midInnerShortNarrow={
           <Section>
             <PinnedRoom room={data.find((r) => r.isPinned) || null} />

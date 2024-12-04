@@ -43,6 +43,15 @@ const createRoomSlice = createSlice({
         objects: [...state.body.objects, action.payload],
       };
     },
+    setCreateObjects: (
+      state,
+      action: PayloadAction<Array<{ name: string; image?: string }>>,
+    ) => {
+      state.body = {
+        ...state.body,
+        objects: action.payload,
+      };
+    },
     deleteCreateObject: (state, action: PayloadAction<number>) => {
       state.body = {
         ...state.body,
@@ -81,6 +90,7 @@ export const {
   setCreateStep,
   setCreateName,
   addCreateObject,
+  setCreateObjects,
   deleteCreateObject,
   addCreateUser,
   deleteCreateUser,
