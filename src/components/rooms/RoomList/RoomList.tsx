@@ -10,6 +10,7 @@ import {
   UserRole,
 } from "../../../types/Room";
 import { formatDate } from "../../../utils/functions/dateFunctions";
+import { to1Dec } from "../../../utils/functions/numberFunctions";
 import Divider from "../../common/Dividers/Dividers";
 import { StaticCircularProgress } from "../../common/Progress/CircularProgress/CircularProgress";
 import SearchField from "../../common/Search/SearchField/SearchField";
@@ -130,7 +131,7 @@ const RoomList: React.FC<RoomListProps> = ({ rooms }) => {
                   color="rgb(var(--primary))"
                   backgroundColor="rgba(var(--base-light), 0.3)"
                 >
-                  {progress * 100}%
+                  {to1Dec(progress * 100)}%
                 </StaticCircularProgress>
               </div>
             </div>
