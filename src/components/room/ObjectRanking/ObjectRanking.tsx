@@ -72,6 +72,7 @@ const ObjectRanking: React.FC<ObjectRankingProps> = ({
   return (
     <div className={styles.container}>
       <TransitionTabs
+        id="object-ranking"
         tabs={tabs}
         selected={view}
         setTab={setView}

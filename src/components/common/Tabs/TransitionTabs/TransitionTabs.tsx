@@ -14,6 +14,7 @@ type TransitionTabsProps = {
   tabs: Tab[];
   selected: string;
   setTab: (tabId: string) => void;
+  id: string;
 };
 
 const TransitionTabs: React.FC<TransitionTabsProps> = ({
@@ -23,6 +24,7 @@ const TransitionTabs: React.FC<TransitionTabsProps> = ({
   tabs,
   selected = tabs[0].id,
   setTab,
+  id: uniqueId,
 }) => {
   return (
     <div
@@ -44,7 +46,7 @@ const TransitionTabs: React.FC<TransitionTabsProps> = ({
           <span>{label}</span>
           {selected === id && (
             <motion.div
-              layoutId="highlight"
+              layoutId={`highlight-${uniqueId}`}
               transition={{ type: "spring", duration: 0.5 }}
               className={styles.highlight}
             />

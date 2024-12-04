@@ -7,6 +7,7 @@ import { GridLayout } from "../components/layout/GridLayout/GridLayout";
 import Layout from "../components/layout/Layout/Layout";
 import AddFriends from "../components/social/AddFriends/AddFriends";
 import FriendList from "../components/social/FriendList/FriendList";
+import SocialHeader from "../components/social/SocialHeader/SocialHeader";
 import { useAlerts } from "../hooks/useAlerts";
 import { ListFriendRequestsResponse } from "../types/FriendRequest";
 import { ListFriendsResponse } from "../types/User";
@@ -45,7 +46,7 @@ const Social = () => {
   return (
     <Layout name="Social">
       <GridLayout
-        topLeftShortWide={<Section>Test</Section>}
+        topLeftShortWide={<SocialHeader numberOfFriends={friendList.length} />}
         bottomLeftBaseWide={
           <Section>
             <FriendList
