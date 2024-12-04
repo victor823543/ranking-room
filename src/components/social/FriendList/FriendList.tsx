@@ -46,6 +46,7 @@ const FriendList: React.FC<FriendListProps> = ({
   return (
     <div>
       <TransitionTabs
+        id="friend-list"
         tabs={tabs}
         selected={view}
         setTab={setView}
