@@ -11,6 +11,7 @@ import TransitionTabs, {
   Tab,
 } from "../../common/Tabs/TransitionTabs/TransitionTabs";
 import { UserDisplayButton } from "../AddFriends/AddFriends";
+import styles from "./FriendList.module.css";
 
 type FriendListProps = {
   friends: Array<FriendInfo>;
@@ -90,6 +91,9 @@ type RenderTableProps =
 const renderTable = (props: RenderTableProps) => {
   switch (props.status) {
     case UserStatus.FRIEND:
+      if (props.friends.length === 0) {
+        return <p className={styles.empty}>No added friends</p>;
+      }
       const tableData = props.friends.map((friend) => ({
         name: friend.username,
         action: (
@@ -102,6 +106,9 @@ const renderTable = (props: RenderTableProps) => {
       }));
       return <Table data={tableData} showTableHead={false} />;
     case UserStatus.SENT_REQUEST:
+      if (props.sentRequests.length === 0) {
+        return <p className={styles.empty}>No requests sent</p>;
+      }
       const tableDataSent = props.sentRequests.map((sentRequest) => ({
         name: sentRequest.receiverName,
         action: (
@@ -117,6 +124,9 @@ const renderTable = (props: RenderTableProps) => {
       }));
       return <Table data={tableDataSent} showTableHead={false} />;
     case UserStatus.RECEIVED_REQUEST:
+      if (props.receivedRequests.length === 0) {
+        return <p className={styles.empty}>No friend requests</p>;
+      }
       const tableDataReceived = props.receivedRequests.map(
         (receivedRequest) => ({
           name: receivedRequest.senderName,
