@@ -1,6 +1,7 @@
 import { ArrowPathIcon } from "@heroicons/react/24/outline";
 import React from "react";
 import { GetRoomResponse } from "../../../types/Room";
+import { to1Dec } from "../../../utils/functions/numberFunctions";
 import CustomizableButton from "../../common/Buttons/CustomizableButton";
 import ProgressBar from "../../common/Progress/ProgressBar/ProgressBar";
 import styles from "./RankHeader.module.css";
@@ -32,7 +33,7 @@ const RankHeader: React.FC<RankHeaderProps> = ({
           max={totalRanked + leftToRank}
           animate
         />
-        <p>{(totalRanked / (totalRanked + leftToRank) || 0) * 100}%</p>
+        <p>{to1Dec((totalRanked / (totalRanked + leftToRank) || 0) * 100)}%</p>
       </div>
       <button className={styles.reloadBtn} onClick={onReload}>
         <ArrowPathIcon strokeWidth={2} color="rgb(var(--primary))" />

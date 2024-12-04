@@ -13,7 +13,9 @@ import {
   selectBody,
   selectStep,
   setCreateName,
+  setCreateObjects,
   setCreateRankingSystem,
+  setCreateStep,
 } from "../slices/createRoomSlice";
 import { CreateRoomBody, RankingSystem, RoomUser } from "../types/Room";
 import { callAPI } from "../utils/apiService";
@@ -23,9 +25,11 @@ type UseCreateRoomReturn = {
   body: CreateRoomBody;
   nextStep: () => void;
   previousStep: () => void;
+  setStep: (step: number) => void;
   setName: (name: string) => void;
   setRankingSystem: (rankingSystem: RankingSystem) => void;
   addObject: (object: { name: string; image?: string }) => void;
+  setObjects: (objects: Array<{ name: string; image?: string }>) => void;
   deleteObject: (index: number) => void;
   addUser: (user: RoomUser) => void;
   deleteUser: (index: number) => void;
@@ -48,6 +52,10 @@ const useCreateRoom = (): UseCreateRoomReturn => {
     dispatch(previousCreateStep());
   };
 
+  const setStep = (step: number) => {
+    dispatch(setCreateStep(step));
+  };
+
   const setName = (name: string) => {
     dispatch(setCreateName(name));
   };
@@ -58,6 +66,10 @@ const useCreateRoom = (): UseCreateRoomReturn => {
 
   const addObject = (object: { name: string; image?: string }) => {
     dispatch(addCreateObject(object));
+  };
+
+  const setObjects = (objects: Array<{ name: string; image?: string }>) => {
+    dispatch(setCreateObjects(objects));
   };
 
   const deleteObject = (index: number) => {
@@ -109,9 +121,11 @@ const useCreateRoom = (): UseCreateRoomReturn => {
     body: currentBody,
     nextStep,
     previousStep,
+    setStep,
     setName,
     setRankingSystem,
     addObject,
+    setObjects,
     deleteObject,
     addUser,
     deleteUser,
