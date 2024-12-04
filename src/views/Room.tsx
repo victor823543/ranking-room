@@ -54,7 +54,8 @@ const Room = () => {
   );
 
   if (error) return <ErrorPage />;
-  if (isLoading || data === undefined) return <LoadingPage name="Rooms" />;
+  if (isLoading || data === undefined || !user)
+    return <LoadingPage name="Rooms" />;
 
   return (
     <Layout name="Rooms">
@@ -65,6 +66,8 @@ const Room = () => {
             name={data.name}
             rankingSystem={data.rankingSystem}
             userRole={userRole}
+            isPinned={data.isPinned}
+            isLiked={data.likedBy.includes(user._id)}
           />
         }
         topRightTallBase={

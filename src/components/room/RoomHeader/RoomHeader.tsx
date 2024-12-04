@@ -1,11 +1,15 @@
-import { Cog6ToothIcon } from "@heroicons/react/24/outline";
+import { Cog6ToothIcon, HeartIcon } from "@heroicons/react/24/outline";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import PinSvg from "../../../assets/svgs/PinSvg";
+import UnpinSvg from "../../../assets/svgs/UnpinSvg";
 import {
   convertRankingSystemToLabel,
   RankingSystem,
   UserRole,
 } from "../../../types/Room";
+import { callAPI } from "../../../utils/apiService";
 import Breadcrumbs from "../../common/Breadcrumbs/Breadcrumbs";
 import Divider from "../../common/Dividers/Dividers";
 import { Header } from "../../common/Headers/Headers";
@@ -16,6 +20,8 @@ type RoomHeaderProps = {
   name: string;
   rankingSystem: RankingSystem;
   userRole: UserRole;
+  isPinned: boolean;
+  isLiked: boolean;
 };
 
 const RoomHeader: React.FC<RoomHeaderProps> = ({
@@ -23,8 +29,32 @@ const RoomHeader: React.FC<RoomHeaderProps> = ({
   name,
   rankingSystem,
   userRole,
+  isPinned,
+  isLiked,
 }) => {
+  const queryClient = useQueryClient();
+  const pinMutation = useMutation({
+    mutationFn: (id: string) => callAPI(`/rooms/${id}/pin`, "POST"),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["room", id] });
+    },
+    onError: (error) => {
+      console.error(error);
+    },
+  });
+
+  const likeMutation = useMutation({
+    mutationFn: (id: string) => callAPI(`/rooms/${id}/like`, "POST"),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["room", id] });
+    },
+    onError: (error) => {
+      console.error(error);
+    },
+  });
+
   const navigate = useNavigate();
+
   return (
     <div className={styles.container}>
       <div className={styles.leftContainer}>
@@ -48,6 +78,18 @@ const RoomHeader: React.FC<RoomHeaderProps> = ({
       <div className={styles.rightContainer}>
         <button className={styles.settingsBtn}>
           <Cog6ToothIcon onClick={() => navigate("settings")} />
+        </button>
+        <button
+          className={styles.settingsBtn}
+          onClick={() => pinMutation.mutate(id)}
+        >
+          {isPinned ? <UnpinSvg /> : <PinSvg />}
+        </button>
+        <button
+          className={`${styles.settingsBtn} ${isLiked ? styles.liked : styles.notLiked}`}
+          onClick={() => likeMutation.mutate(id)}
+        >
+          {isLiked ? <HeartIcon /> : <HeartIcon />}
         </button>
       </div>
     </div>

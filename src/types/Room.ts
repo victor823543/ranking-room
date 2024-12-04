@@ -33,6 +33,8 @@ export type GetRoomResponse = {
   categories?: string[];
   tierNames?: string[];
   objects: Array<Object>;
+  isPinned: boolean;
+  likedBy: string[];
 };
 
 export type ListRoomsResponse = Array<{
@@ -42,6 +44,8 @@ export type ListRoomsResponse = Array<{
   objects: Array<Object>;
   timestamp: number;
   rankingSystem: RankingSystem;
+  isPinned: boolean;
+  likedBy: string[];
 }>;
 
 export type Object = {
