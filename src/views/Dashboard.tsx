@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import ErrorPage from "../components/common/Error/ErrorPage/ErrorPage";
 import LoadingPage from "../components/common/Loading/LoadingPage/LoadingPage";
 import Section from "../components/common/Sections/Sections";
+import AwaitsAction from "../components/dashboard/AwaitsAction/AwaitsAction";
 import DashboardHeader from "../components/dashboard/DashboardHeader/DashboardHeader";
 import DashboardNav from "../components/dashboard/DashboardNav/DashboardNav";
 import FriendRequests from "../components/dashboard/FriendRequests/FriendRequests";
@@ -39,7 +40,7 @@ const Dashboard = () => {
         bottomLeftBaseBase={<DashboardNav />}
         topRightShortBase={
           <Section>
-            <div></div>
+            <AwaitsAction rooms={data} user={user} />
           </Section>
         }
         midMidShortNarrow={
