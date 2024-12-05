@@ -81,6 +81,8 @@ const Room = () => {
             userRole={userRole}
             isPinned={data.isPinned}
             isLiked={data.likedBy.includes(user._id)}
+            hasEditPermission={userPrivilages.includes(UserPrivilage.EDIT)}
+            pushAlert={pushAlert}
           />
         }
         topRightTallBase={

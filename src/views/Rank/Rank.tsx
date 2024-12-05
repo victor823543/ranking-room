@@ -52,7 +52,8 @@ const Rank = () => {
   }, [hasRankPrivilege]);
 
   if (error) return <ErrorPage />;
-  if (isLoading || data === undefined) return <LoadingPage name="Rooms" />;
+  if (isLoading || data === undefined || !hasRankPrivilege)
+    return <LoadingPage name="Rooms" />;
 
   return (
     <DragObjectsProvider>

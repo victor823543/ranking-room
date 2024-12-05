@@ -4,6 +4,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import PinSvg from "../../../assets/svgs/PinSvg";
 import UnpinSvg from "../../../assets/svgs/UnpinSvg";
+import { Alert, WarningAlert } from "../../../hooks/useAlerts";
 import {
   convertRankingSystemToLabel,
   RankingSystem,
@@ -22,6 +23,8 @@ type RoomHeaderProps = {
   userRole: UserRole;
   isPinned: boolean;
   isLiked: boolean;
+  hasEditPermission: boolean;
+  pushAlert: (alert: Alert) => void;
 };
 
 const RoomHeader: React.FC<RoomHeaderProps> = ({
@@ -31,6 +34,8 @@ const RoomHeader: React.FC<RoomHeaderProps> = ({
   userRole,
   isPinned,
   isLiked,
+  hasEditPermission,
+  pushAlert,
 }) => {
   const queryClient = useQueryClient();
   const pinMutation = useMutation({
@@ -55,6 +60,16 @@ const RoomHeader: React.FC<RoomHeaderProps> = ({
 
   const navigate = useNavigate();
 
+  const handleSettingsClick = () => {
+    if (hasEditPermission) {
+      navigate("settings");
+    } else {
+      pushAlert(
+        new WarningAlert("You don't have permission to edit this room"),
+      );
+    }
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.leftContainer}>
@@ -77,7 +92,7 @@ const RoomHeader: React.FC<RoomHeaderProps> = ({
       </div>
       <div className={styles.rightContainer}>
         <button className={styles.settingsBtn}>
-          <Cog6ToothIcon onClick={() => navigate("settings")} />
+          <Cog6ToothIcon onClick={handleSettingsClick} />
         </button>
         <button
           className={styles.settingsBtn}
