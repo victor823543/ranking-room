@@ -1,7 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import Breadcrumbs from "../../components/common/Breadcrumbs/Breadcrumbs";
+import Divider from "../../components/common/Dividers/Dividers";
 import ErrorPage from "../../components/common/Error/ErrorPage/ErrorPage";
+import { Header } from "../../components/common/Headers/Headers";
 import LoadingPage from "../../components/common/Loading/LoadingPage/LoadingPage";
 import Layout from "../../components/layout/Layout/Layout";
 import DeleteRoom from "../../components/room/DeleteRoom/DeleteRoom";
@@ -47,7 +49,11 @@ const RoomSettings = () => {
               { name: "Settings", href: `/rooms/${data.id}/settings` },
             ]}
           />
+          <Divider margin="1rem" color="rgb(var(--base))" />
         </div>
+        <Header variant="primary" center={false}>
+          Settings
+        </Header>
         {updatedValues && (
           <SettingsConfirm
             updateSettings={updateSettings}

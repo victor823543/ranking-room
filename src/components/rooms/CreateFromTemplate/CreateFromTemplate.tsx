@@ -47,6 +47,7 @@ const CreateFromTemplate = () => {
       <div className={styles.templates}>
         {data.map((template) => (
           <TemplateDisplay
+            key={template._id}
             template={template}
             onSystemClick={handleCreateFromTemplate}
           />
@@ -70,7 +71,6 @@ const TemplateDisplay: React.FC<TemplateDisplayProps> = ({
   return (
     <motion.div
       layout
-      key={template._id}
       className={`${styles.template} ${chooseSystem ? styles.isChoosing : ""}`}
     >
       <motion.div
@@ -94,6 +94,7 @@ const TemplateDisplay: React.FC<TemplateDisplayProps> = ({
       >
         {template.rankingSystems.map((system) => (
           <div
+            key={system}
             className={styles.system}
             onClick={() => onSystemClick(template, system)}
           >
