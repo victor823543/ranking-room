@@ -99,6 +99,8 @@ const Room = () => {
             <RankPrompt
               totalObjects={data.objects.length}
               rankedObjects={rankedObjects}
+              hasRankPermission={userPrivilages.includes(UserPrivilage.RANK)}
+              pushAlert={pushAlert}
             />
           </Section>
         }
