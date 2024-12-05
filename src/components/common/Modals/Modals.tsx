@@ -7,6 +7,8 @@ type ModalWrapperStylingProps = {
   blur: string;
   /** Background opacity - fraction from 0 to 1 */
   darken: string;
+  /** Background color - rgb value */
+  rgb?: string;
 };
 
 type ModalWrapperProps = HTMLMotionProps<"div"> & {
@@ -16,7 +18,11 @@ type ModalWrapperProps = HTMLMotionProps<"div"> & {
 };
 
 const createModalWrapper =
-  ({ blur, darken }: ModalWrapperStylingProps): React.FC<ModalWrapperProps> =>
+  ({
+    blur,
+    darken,
+    rgb = "3, 7, 17",
+  }: ModalWrapperStylingProps): React.FC<ModalWrapperProps> =>
   ({
     children,
     style,
@@ -32,7 +38,7 @@ const createModalWrapper =
         style={{
           ...style,
           backdropFilter: `blur(${blur})`,
-          backgroundColor: `rgba(3, 7, 17, ${darken})`,
+          backgroundColor: `rgba(${rgb}, ${darken})`,
           pointerEvents,
         }}
         className={`${className} ${styles.modalWrapper} ${noSidebar ? "" : styles.marginLeft} ${noNavbar ? "" : styles.marginTop}`}
@@ -64,6 +70,12 @@ export const ModalWrapperBlur = createModalWrapper({
 export const ModalWrapperStrong = createModalWrapper({
   darken: ".3",
   blur: "8px",
+});
+
+export const ModalWrapperBlurToned = createModalWrapper({
+  darken: ".1",
+  blur: "6px",
+  rgb: "var(--primary-x-dark)",
 });
 
 interface ModalProps extends HTMLMotionProps<"div"> {}
