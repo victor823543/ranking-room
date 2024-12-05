@@ -31,7 +31,7 @@ const PinnedRoom: React.FC<PinnedRoomProps> = ({ room }) => {
       {room && (
         <div className={styles.room}>
           <HoverInfoArrowButton
-            onClick={() => navigate(room.id)}
+            onClick={() => navigate(`/rooms/${room.id}`)}
             info={[
               {
                 label: "Created At",
