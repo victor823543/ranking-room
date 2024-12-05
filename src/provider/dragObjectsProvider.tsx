@@ -31,9 +31,13 @@ export const DragObjectsProvider: React.FC<{ children: React.ReactNode }> = ({
   const [draggedItemRank, setDraggedItemRank] = useState<number | null>(null);
 
   const setItems = (items: Object[], userId: string) => {
-    const ranked = items.filter((o) =>
-      o.ranking.some((r) => r.user === userId),
-    );
+    const ranked = items
+      .filter((o) => o.ranking.some((r) => r.user === userId))
+      .sort((a, b) => {
+        const aRank = a.ranking.find((r) => r.user === userId)?.rank || 0;
+        const bRank = b.ranking.find((r) => r.user === userId)?.rank || 0;
+        return aRank - bRank;
+      });
     const notRanked = items.filter(
       (o) => !o.ranking.some((r) => r.user === userId),
     );
