@@ -3,6 +3,7 @@ import { useEffect, useReducer, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../provider/authProvider";
 import {
+  convertRoleToPrivilages,
   GetRoomResponse,
   RoomUser,
   RoomUserExtended,
@@ -91,7 +92,10 @@ const useRoomSettings = (
   useEffect(() => {
     if (room) {
       dispatch({ type: "SET_NAME", payload: room.name });
-      dispatch({ type: "SET_USERS", payload: room.users });
+      dispatch({
+        type: "SET_USERS",
+        payload: room.users.filter((u) => u.userId !== thisUser?._id),
+      });
     }
   }, [room]);
 
@@ -148,7 +152,7 @@ const useRoomSettings = (
     const getBodyUsers: RoomUser[] = fields.users.map((user) => ({
       userId: user.userId,
       role: user.role,
-      privilages: user.privilages,
+      privilages: convertRoleToPrivilages[user.role],
     }));
     updateSettingsMutation.mutate({ name: fields.name, users: getBodyUsers });
   };
@@ -189,11 +193,13 @@ const checkValues = (
 
   if (room.users && body.users) {
     let updatedCount = 0;
-    const currentUsers: UpdatedUser[] = room.users.map((user) => ({
-      userId: user.userId,
-      name: { content: user.username, status: "same" },
-      role: { content: user.role, status: "same" },
-    }));
+    const currentUsers: UpdatedUser[] = room.users
+      .filter((u) => u.userId !== thisUser?._id)
+      .map((user) => ({
+        userId: user.userId,
+        name: { content: user.username, status: "same" },
+        role: { content: user.role, status: "same" },
+      }));
 
     body.users.forEach((user) => {
       const currentUser = currentUsers.find(
