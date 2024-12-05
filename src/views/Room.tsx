@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
+import Alerts from "../components/common/Alerts/Alerts";
 import ErrorPage from "../components/common/Error/ErrorPage/ErrorPage";
 import LoadingPage from "../components/common/Loading/LoadingPage/LoadingPage";
 import Section from "../components/common/Sections/Sections";
@@ -11,12 +12,19 @@ import ObjectModal from "../components/room/ObjectModal/ObjectModal";
 import ObjectRanking from "../components/room/ObjectRanking/ObjectRanking";
 import RankPrompt from "../components/room/RankPrompt/RankPrompt";
 import RoomHeader from "../components/room/RoomHeader/RoomHeader";
+import { useAlerts } from "../hooks/useAlerts";
 import { useHandleSearchParam } from "../hooks/useHandleSearchParam";
 import { useAuth } from "../provider/authProvider";
-import { GetRoomResponse, UserRole } from "../types/Room";
+import {
+  convertRoleToPrivilages,
+  GetRoomResponse,
+  UserPrivilage,
+  UserRole,
+} from "../types/Room";
 import { callAPI } from "../utils/apiService";
 
 const Room = () => {
+  const { alerts, pushAlert, removeAlert } = useAlerts();
   const { id } = useParams<{ id: string }>();
   const { user } = useAuth();
   const { currentValue, hasParam, setParam, removeParam } =
@@ -44,6 +52,11 @@ const Room = () => {
       data?.users.find((u) => u.userId === user?._id)?.role ||
       UserRole.VIEW_ONLY,
     [data, user],
+  );
+
+  const userPrivilages = useMemo(
+    () => convertRoleToPrivilages[userRole],
+    [userRole],
   );
 
   const rankedObjects = useMemo(
@@ -91,7 +104,11 @@ const Room = () => {
         }
         bottomInnerBaseNarrow={
           <Section>
-            <CreateObjectPrompt totalObjects={data.objects.length} />
+            <CreateObjectPrompt
+              totalObjects={data.objects.length}
+              hasAddPermission={userPrivilages.includes(UserPrivilage.ADD)}
+              pushAlert={pushAlert}
+            />
           </Section>
         }
       />
@@ -105,6 +122,12 @@ const Room = () => {
           roomUsers={data.users}
         />
       )}
+      <Alerts
+        list={alerts}
+        onClose={(item) => removeAlert(item)}
+        onDurationEnd={(item) => removeAlert(item)}
+        hasSidebar={true}
+      />
     </Layout>
   );
 };

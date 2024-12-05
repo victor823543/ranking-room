@@ -3,8 +3,9 @@ import { PhotoIcon, TrashIcon } from "@heroicons/react/24/solid";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
+import { useEffect, useMemo } from "react";
 import { useForm } from "react-hook-form";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import * as yup from "yup";
 import AddImageSvg from "../../assets/svgs/AddImageSvg";
 import Breadcrumbs from "../../components/common/Breadcrumbs/Breadcrumbs";
@@ -16,8 +17,10 @@ import LoadingPage from "../../components/common/Loading/LoadingPage/LoadingPage
 import TextInputLine from "../../components/common/TextInputs/TextInputLine";
 import Layout from "../../components/layout/Layout/Layout";
 import useAddObject from "../../hooks/useAddObject";
+import { useAlerts, WarningAlert } from "../../hooks/useAlerts";
 import { useHandleSearchParam } from "../../hooks/useHandleSearchParam";
-import { GetRoomResponse } from "../../types/Room";
+import { useAuth } from "../../provider/authProvider";
+import { GetRoomResponse, UserPrivilage } from "../../types/Room";
 import { callAPI } from "../../utils/apiService";
 import styles from "./AddObjects.module.css";
 
@@ -33,9 +36,12 @@ type FormFields = yup.InferType<typeof schema>;
 
 const AddObjects = () => {
   const { id } = useParams<{ id: string }>();
+  const { user } = useAuth();
   const { addObject, deleteObject, submit, addedObjects } = useAddObject();
   const { hasParam, addParam, removeParam } =
     useHandleSearchParam("select-image");
+  const navigate = useNavigate();
+  const { pushAlert } = useAlerts();
 
   const form = useForm({
     mode: "onChange",
@@ -58,8 +64,30 @@ const AddObjects = () => {
     queryFn: () => callAPI<GetRoomResponse>(`/rooms/${id}`, "GET"),
   });
 
+  const hasAddPrivilege: boolean | null = useMemo(() => {
+    if (data === undefined || user === undefined) return null;
+    return (
+      data?.users
+        .find((u) => u.userId === user?._id)
+        ?.privilages.includes(UserPrivilage.ADD) || false
+    );
+  }, [data, user]);
+
+  useEffect(() => {
+    if (hasAddPrivilege === false) {
+      navigate(`/rooms/${id}`);
+      pushAlert(
+        new WarningAlert(
+          "You don't have permission to add objects to this room",
+          { global: true },
+        ),
+      );
+    }
+  }, [hasAddPrivilege]);
+
   if (error) return <ErrorPage />;
-  if (isLoading || data === undefined) return <LoadingPage name="Rooms" />;
+  if (isLoading || data === undefined || !hasAddPrivilege)
+    return <LoadingPage name="Rooms" />;
 
   return (
     <Layout name="Rooms">

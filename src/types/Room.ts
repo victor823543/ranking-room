@@ -100,7 +100,7 @@ export enum UserRole {
   CUSTOM = "CUSTOM",
 }
 
-export const convertRoleToPrivilages = {
+export const convertRoleToPrivilages: Record<UserRole, UserPrivilage[]> = {
   [UserRole.ADMIN]: [
     UserPrivilage.INVITE,
     UserPrivilage.EDIT,

@@ -3,6 +3,7 @@ import { useEffect, useReducer, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../provider/authProvider";
 import {
+  convertRoleToPrivilages,
   GetRoomResponse,
   RoomUser,
   RoomUserExtended,
@@ -148,7 +149,7 @@ const useRoomSettings = (
     const getBodyUsers: RoomUser[] = fields.users.map((user) => ({
       userId: user.userId,
       role: user.role,
-      privilages: user.privilages,
+      privilages: convertRoleToPrivilages[user.role],
     }));
     updateSettingsMutation.mutate({ name: fields.name, users: getBodyUsers });
   };
