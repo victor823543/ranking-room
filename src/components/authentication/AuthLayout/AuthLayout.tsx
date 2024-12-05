@@ -1,4 +1,3 @@
-import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import React from "react";
 import { Link } from "react-router-dom";
 import BackgroundBlurAuth from "../../../assets/svgs/BackgroundBlurAuth";
@@ -19,15 +18,6 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({
   return (
     <div className={styles.authLayout}>
       <div className={styles.container}>
-        <header className={styles.header}>
-          <button
-            className={styles.backButton}
-            onClick={() => window.history.back()}
-          >
-            <ChevronLeftIcon className={styles.backIcon} />
-            <span>Back</span>
-          </button>
-        </header>
         <main className={styles.main}>
           <div className={styles.logoWrapper}>
             <Logo />

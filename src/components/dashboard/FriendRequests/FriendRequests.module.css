@@ -1,0 +1,77 @@
+.container {
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  gap: 1rem;
+  padding: 0 2rem 0.25rem 0;
+  border-bottom: solid 1px rgb(var(--primary));
+  margin-bottom: 1rem;
+}
+
+.iconWrapper {
+  width: 1.5rem;
+  color: rgb(var(--primary));
+}
+
+.h3 {
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: rgb(var(--base-light));
+}
+
+.noRequests {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.noRequests p {
+  color: rgb(var(--base));
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.request {
+  color: rgb(var(--base-light));
+  border-radius: var(--border-radius);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1rem 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.request:hover {
+  background-color: rgba(var(--base-x-dark), 0.3);
+  cursor: pointer;
+}
+
+.request p {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.requestActions {
+  margin-top: 0.5rem;
+}
+
+.requests {
+  flex: 1;
+  overflow-y: scroll;
+}
+
+.requests > * + * {
+  border-top: solid 1px rgba(var(--base), 0.5);
+}
+
+.requestWrapper {
+  padding: 0.5rem 0;
+}

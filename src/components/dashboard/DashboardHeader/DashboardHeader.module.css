@@ -1,0 +1,14 @@
+.breadcrumbsContainer {
+  width: fit-content;
+}
+
+.breadcrumbsContainer > nav {
+  padding-right: 2.5rem;
+}
+
+.p {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgb(var(--base));
+  margin-top: 0.5rem;
+}

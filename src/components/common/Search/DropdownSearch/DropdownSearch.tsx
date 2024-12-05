@@ -2,7 +2,7 @@ import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import React, { useEffect, useState } from "react";
 import styles from "./DropdownSearch.module.css";
 
-interface SearchObject {
+export interface SearchObject {
   href: string;
   title: string;
   description?: string;
@@ -13,6 +13,8 @@ interface DropdownSearchProps {
   items: SearchObject[];
   /** If true, the dropdown is always visible when focused on input. */
   showAlways?: boolean;
+  /** Placeholder text for the input field. */
+  placeholder?: string;
 }
 
 /**
@@ -25,6 +27,7 @@ interface DropdownSearchProps {
 const DropdownSearch: React.FC<DropdownSearchProps> = ({
   items,
   showAlways = false,
+  placeholder = "Search...",
 }) => {
   const [searchValue, setSearchValue] = useState("");
   const [filteredList, setFilteredList] = useState<SearchObject[]>(
@@ -49,7 +52,7 @@ const DropdownSearch: React.FC<DropdownSearchProps> = ({
       <div className={styles.searchField} onClick={(e) => e.stopPropagation()}>
         <input
           type="text"
-          placeholder="Search..."
+          placeholder={placeholder}
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
           onFocus={() => setIsFocus(true)}

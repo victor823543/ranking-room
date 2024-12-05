@@ -1,0 +1,54 @@
+.container {
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  gap: 1rem;
+  padding: 0 2rem 0.25rem 0;
+  border-bottom: solid 1px rgb(var(--primary));
+  margin-bottom: 1rem;
+}
+
+.iconWrapper {
+  width: 1.5rem;
+  color: rgb(var(--primary));
+}
+
+.h3 {
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: rgb(var(--base-light));
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchButton {
+  width: 8rem;
+  height: 8rem;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  color: rgb(var(--base));
+  border-radius: var(--border-radius);
+  transition:
+    color 0.2s,
+    background-color 0.2s;
+}
+
+.searchButton svg {
+  stroke-width: 2px;
+}
+
+.searchButton:hover {
+  background-color: rgba(var(--base-mid), 0.2);
+  color: rgb(var(--primary));
+}

@@ -1,0 +1,122 @@
+.container {
+  display: flex;
+  gap: 1rem;
+  position: relative;
+  height: 100%;
+}
+
+.leftContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  gap: 1rem;
+  padding: 0 2rem 0.25rem 0;
+  border-bottom: solid 1px rgb(var(--primary));
+  margin-bottom: 1rem;
+}
+
+.iconWrapper {
+  width: 1.5rem;
+  color: rgb(var(--primary));
+}
+
+.h3 {
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: rgb(var(--base-light));
+}
+
+.room {
+  color: rgb(var(--base-light));
+}
+
+.name {
+  font-size: 1rem;
+  font-weight: 300;
+  padding-right: 1rem;
+  padding-bottom: 0.25rem;
+  border-bottom: solid 1px rgba(var(--primary-x-light), 0.5);
+  transition: all 0.2s;
+  width: fit-content;
+  text-wrap-style: balance;
+}
+
+.name:hover {
+  font-weight: 500;
+  color: rgb(var(--base-x-light));
+  border-bottom: solid 1px rgba(var(--primary));
+}
+
+.roomInfo {
+  color: rgba(var(--base-light), 0.8);
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin: 0.75rem 0;
+}
+
+.noRoom {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.noRoom p {
+  color: rgb(var(--base));
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.rightContainer {
+  padding: 1rem;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.progressWrapper {
+  color: rgb(var(--base-light));
+}
+
+.showNextContainer {
+  position: absolute;
+  right: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  justify-content: space-between;
+}
+
+.showNextContainer p {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgba(var(--base-light), 0.8);
+  margin-bottom: 0.5rem;
+}
+
+.showNextContainer button {
+  position: relative;
+  border-radius: var(--border-radius);
+  top: 1rem;
+  left: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgba(var(--base-light), 0.8);
+  margin-bottom: 0.5rem;
+  transition:
+    color 0.2s,
+    background-color 0.2s;
+}
+
+.showNextContainer button:hover {
+  color: rgb(var(--base-light));
+  background-color: rgba(var(--base-mid), 0.3);
+}

@@ -3,7 +3,7 @@
   overflow: hidden;
   border-radius: 0.5rem;
   height: fit-content;
-  background-color: var(--form-primary);
+  background-color: rgba(var(--base-2x-dark), 0.7);
   box-shadow:
     0 4px 6px -1px rgb(0 0 0 / 0.1),
     0 2px 4px -2px rgb(0 0 0 / 0.1);
@@ -25,12 +25,17 @@
   width: 100%;
   padding: 0 1rem;
   font-weight: 300;
-  color: var(--form-text);
+  color: rgb(var(--base-light));
+}
+
+.searchField > input::placeholder {
+  color: rgba(var(--base-light), 0.7);
 }
 
 .inputSearchIcon {
-  color: var(--form-text-secondary);
+  color: rgb(var(--base-light));
   margin-right: 1rem;
+  width: 2rem;
 }
 
 .searchDropdown {
@@ -42,13 +47,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 2rem;
   height: 4rem;
   padding: 0 1rem;
   text-decoration: none;
+  color: rgb(var(--base-light));
 }
 
 .searchObject:hover {
-  background-color: hsl(from var(--form-primary) h s calc(l - 5));
+  background-color: rgba(var(--primary-x-dark), 0.2);
 }
 
 .title {
