@@ -17,11 +17,6 @@ import Social from "./views/Social";
 const Routes = () => {
   const openRoutes = [
     {
-      path: "/",
-      element: <Dashboard />,
-      errorElement: <NotFound />,
-    },
-    {
       path: "/signup",
       element: <Signup />,
       errorElement: <NotFound />,
@@ -38,6 +33,10 @@ const Routes = () => {
       path: "/",
       element: <AuthenticatedRoute />,
       children: [
+        {
+          path: "/",
+          element: <Dashboard />,
+        },
         {
           path: "/rooms",
           element: <Rooms />,

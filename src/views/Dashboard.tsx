@@ -34,26 +34,18 @@ const Dashboard = () => {
     queryFn: () => callAPI<{ objects: Object[] }>(`/objects`, "GET"),
   });
 
-  console.log(objectsData);
-
   if (error || objectsError) return <ErrorPage />;
   if (
     user === undefined ||
     isLoading ||
     data === undefined ||
     objectsIsLoading ||
-    objectsData === undefined
+    objectsData === undefined ||
+    user === null
   ) {
     return <LoadingPage name="Dashboard" />;
   }
 
-  if (user === null) {
-    return (
-      <Layout name="Dashboard">
-        <div></div>
-      </Layout>
-    );
-  }
   return (
     <Layout name="Dashboard">
       <GridLayout
