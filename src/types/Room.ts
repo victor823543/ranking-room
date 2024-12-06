@@ -31,7 +31,7 @@ export type GetRoomResponse = {
   rankingSystem: RankingSystem;
   maxPoints?: number;
   categories?: string[];
-  tierNames?: string[];
+  tierNames?: { name: string; points: number }[];
   objects: Array<Object>;
   isPinned: boolean;
   likedBy: string[];

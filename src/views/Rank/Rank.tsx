@@ -7,9 +7,11 @@ import LoadingPage from "../../components/common/Loading/LoadingPage/LoadingPage
 import Layout from "../../components/layout/Layout/Layout";
 import ListRanking from "../../components/rank/ListRanking/ListRanking";
 import PointsRanking from "../../components/rank/PointsRanking/PointsRanking";
+import TierRanking from "../../components/rank/TierRanking/TierRanking";
 import { useAlerts, WarningAlert } from "../../hooks/useAlerts";
 import { useAuth } from "../../provider/authProvider";
 import { DragObjectsProvider } from "../../provider/dragObjectsProvider";
+import { TierListProvider } from "../../provider/tierListProvider";
 import {
   GetRoomResponse,
   RankingSystem,
@@ -78,7 +80,11 @@ const Rank = () => {
 const render = (data: GetRoomResponse) => {
   switch (data.rankingSystem) {
     case RankingSystem.TIER:
-      return null;
+      return (
+        <TierListProvider>
+          <TierRanking data={data} />
+        </TierListProvider>
+      );
     case RankingSystem.POINTS:
       return <PointsRanking data={data} />;
     case RankingSystem.RANK:
