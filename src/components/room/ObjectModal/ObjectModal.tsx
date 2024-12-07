@@ -243,8 +243,8 @@ const UserRanking: React.FC<UserRankingProps> = ({
   let max: number = 0;
   switch (rankingSystem) {
     case RankingSystem.TIER:
-      value = (ranking.tier as number) + 1;
-      max = 5;
+      value = ranking.tier as number;
+      max = 6;
       break;
     case RankingSystem.POINTS:
       value = ranking.points as number;
