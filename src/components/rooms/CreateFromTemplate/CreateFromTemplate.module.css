@@ -33,7 +33,8 @@
 
 .template {
   display: grid;
-
+  position: relative;
+  height: fit-content;
   border-radius: var(--border-radius-sm);
   border: solid 1px rgba(var(--base-x-light), 0.15);
   background-color: rgba(var(--base-x-dark), 0.2);

@@ -7,6 +7,7 @@ import UnpinSvg from "../../../assets/svgs/UnpinSvg";
 import { Alert, WarningAlert } from "../../../hooks/useAlerts";
 import {
   convertRankingSystemToLabel,
+  convertUserRoleToLabel,
   RankingSystem,
   UserRole,
 } from "../../../types/Room";
@@ -88,7 +89,9 @@ const RoomHeader: React.FC<RoomHeaderProps> = ({
         <Header center={false} as="h2" variant="secondary">
           {convertRankingSystemToLabel[rankingSystem]}
         </Header>
-        <p className={styles.p}>{`Your role: ${userRole}`}</p>
+        <p
+          className={styles.p}
+        >{`Your role: ${convertUserRoleToLabel[userRole]}`}</p>
       </div>
       <div className={styles.rightContainer}>
         <button className={styles.settingsBtn}>

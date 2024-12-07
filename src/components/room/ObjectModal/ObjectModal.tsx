@@ -3,7 +3,7 @@ import { PhotoIcon } from "@heroicons/react/24/solid";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion } from "framer-motion";
-import React from "react";
+import React, { useMemo } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import AddImageSvg from "../../../assets/svgs/AddImageSvg";
@@ -15,6 +15,7 @@ import {
   RoomUserExtended,
 } from "../../../types/Room";
 import { callAPI } from "../../../utils/apiService";
+import { defaultTierListNames } from "../../../utils/constants";
 import { getOrdinalSuffix } from "../../../utils/functions/numberFunctions";
 import CustomizableButton from "../../common/Buttons/CustomizableButton";
 import Divider from "../../common/Dividers/Dividers";
@@ -30,6 +31,7 @@ type ObjectModalProps = {
   totalObjects: number;
   rankingSystem: RankingSystem;
   roomUsers: RoomUserExtended[];
+  tierNames?: { name: string; points: number }[];
 };
 
 const schema = yup.object({
@@ -45,10 +47,19 @@ const ObjectModal: React.FC<ObjectModalProps> = ({
   rankingSystem,
   roomUsers,
   totalObjects,
+  tierNames,
 }) => {
   const queryClient = useQueryClient();
   const { hasParam, addParam, removeParam } =
     useHandleSearchParam("select-image");
+
+  const tierNamesRecord = useMemo(
+    () =>
+      rankingSystem === RankingSystem.TIER
+        ? tierNamesContverter(tierNames || defaultTierListNames)
+        : {},
+    [tierNames],
+  );
 
   const form = useForm({
     mode: "onChange",
@@ -204,6 +215,7 @@ const ObjectModal: React.FC<ObjectModalProps> = ({
                         ?.username || ""
                     }
                     totalObjects={totalObjects}
+                    tierNamesRecord={tierNamesRecord}
                   />
                 ))}
               </div>
@@ -226,11 +238,22 @@ const ObjectModal: React.FC<ObjectModalProps> = ({
   );
 };
 
+const tierNamesContverter = (
+  tierNames: { name: string; points: number }[],
+): Record<number, string> => {
+  let result: Record<number, string> = {};
+  tierNames.forEach((tier) => {
+    result[tier.points] = tier.name;
+  });
+  return result;
+};
+
 type UserRankingProps = {
   rankingSystem: RankingSystem;
   ranking: ObjectRanking;
   username: string;
   totalObjects: number;
+  tierNamesRecord: Record<number, string>;
 };
 
 const UserRanking: React.FC<UserRankingProps> = ({
@@ -238,32 +261,33 @@ const UserRanking: React.FC<UserRankingProps> = ({
   ranking,
   username,
   totalObjects,
+  tierNamesRecord,
 }) => {
   let value: number = 0;
   let max: number = 0;
+  let display: string = "";
   switch (rankingSystem) {
     case RankingSystem.TIER:
       value = ranking.tier as number;
       max = 6;
+      display = `Tier: ${tierNamesRecord[value]}`;
       break;
     case RankingSystem.POINTS:
       value = ranking.points as number;
       max = 10;
+      display = `Points: ${value} / ${max}`;
       break;
     case RankingSystem.RANK:
       value = totalObjects - (ranking.rank as number) + 1;
       max = totalObjects;
+      display = `Rank: ${getOrdinalSuffix(ranking.rank as number)}`;
       break;
   }
 
   return (
     <div className={styles.userRanking}>
       <h3 className={styles.username}>{username}</h3>
-      <p className={styles.rankingValue}>
-        {rankingSystem === RankingSystem.RANK
-          ? getOrdinalSuffix(ranking.rank as number)
-          : `${value} / ${max}`}
-      </p>
+      <p className={styles.rankingValue}>{display}</p>
       <ProgressBar value={value} max={max} />
       <div className={styles.fadeDivider} />
     </div>

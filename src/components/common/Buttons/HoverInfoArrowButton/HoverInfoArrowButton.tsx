@@ -13,7 +13,7 @@ const HoverInfoArrowButton: React.FC<HoverInfoArrowButtonProps> = ({
   children,
   onClick,
   info,
-  infoHeight = 80,
+  infoHeight = 60,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 

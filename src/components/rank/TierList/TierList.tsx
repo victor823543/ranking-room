@@ -46,17 +46,29 @@ const TierList: React.FC<TierListProps> = ({ tierNames }) => {
           event.clientY >= rect.top &&
           event.clientY <= rect.bottom
         ) {
-          const itemHeight = rect.height / tierNames.length;
-          const tier = Math.min(
-            tierNames.length -
-              Math.floor((event.clientY - rect.top) / itemHeight),
-            tierNames.length,
-          );
-          console.log(tier);
-          if (internalDraggedFrom !== null) {
-            setInternalDraggedItemRank(tier);
+          const tierElements = tierElement.querySelectorAll(".tier");
+          let tier: number | null = null;
+
+          tierElements.forEach((tierEl, index) => {
+            const tierRect = tierEl.getBoundingClientRect();
+            if (
+              event.clientY >= tierRect.top &&
+              event.clientY <= tierRect.bottom &&
+              tier === null
+            ) {
+              tier = tierNames.length - index;
+            }
+          });
+
+          if (tier !== null) {
+            if (internalDraggedFrom !== null) {
+              setInternalDraggedItemRank(tier);
+            } else {
+              setDraggedItemTier(tier);
+            }
           } else {
-            setDraggedItemTier(tier);
+            setDraggedItemTier(null);
+            setInternalDraggedItemRank(internalDraggedFrom);
           }
         } else {
           setDraggedItemTier(null);
@@ -100,7 +112,7 @@ const TierList: React.FC<TierListProps> = ({ tierNames }) => {
   return (
     <div className={styles.tierList} ref={tierRef}>
       {sortedTierNames.map((tier, index) => (
-        <div className={styles.tier} key={index}>
+        <div className={`tier ${styles.tier}`} key={index}>
           <div className={styles.tierName}>{tier.name}</div>
           <div className={styles.objects}>
             {rankedItems[tier.points] &&

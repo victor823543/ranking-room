@@ -47,10 +47,12 @@ const PointsRanking: React.FC<PointsRankingProps> = ({ data }) => {
 
   const handleSubmit = () => {
     if (!points || Object.keys(points).length === 0) return;
-    const ranking = Object.entries(points).map(([object, { points }]) => ({
-      object,
-      points,
-    }));
+    let ranking: Array<{ object: string; points: number }> = [];
+
+    Object.entries(points).forEach(([object, { points }]) => {
+      if (points === 0) return;
+      ranking.push({ object, points });
+    });
     mutation.mutate(ranking);
   };
 
