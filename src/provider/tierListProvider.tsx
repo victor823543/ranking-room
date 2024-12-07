@@ -36,11 +36,11 @@ export const TierListProvider: React.FC<{ children: React.ReactNode }> = ({
     let ranked: Record<number, ObjectType[]> = {};
     items.forEach((item) => {
       const userRanking = item.ranking.find((r) => r.user === userId);
-      if (userRanking) {
-        if (userRanking.tier || 1 in ranked) {
-          ranked[userRanking.tier || 1].push(item);
+      if (userRanking && userRanking.tier) {
+        if (userRanking.tier in ranked) {
+          ranked[userRanking.tier].push(item);
         } else {
-          ranked[userRanking.tier || 1] = [item];
+          ranked[userRanking.tier] = [item];
         }
       }
     });
@@ -58,6 +58,8 @@ export const TierListProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const getObjectRanking = (): Array<{ object: string; tier: number }> => {
     let objectRanking: Array<{ object: string; tier: number }> = [];
+    console.log("RankedItems:", rankedItems);
+
     Object.entries(rankedItems).forEach(([tier, objects]) => {
       objects.forEach((object) => {
         objectRanking.push({
@@ -66,6 +68,7 @@ export const TierListProvider: React.FC<{ children: React.ReactNode }> = ({
         });
       });
     });
+    console.log("ObjectRanking: ", objectRanking);
     return objectRanking;
   };
 
@@ -74,7 +77,12 @@ export const TierListProvider: React.FC<{ children: React.ReactNode }> = ({
     if (itemToMove) {
       setRankedItems((prev) => {
         const newObj = { ...prev };
-        newObj[to].push(itemToMove);
+        if (to in newObj) {
+          newObj[to].push(itemToMove);
+        } else {
+          newObj[to] = [itemToMove];
+        }
+
         newObj[from] = newObj[from].filter((o) => o._id !== id);
         return newObj;
       });
