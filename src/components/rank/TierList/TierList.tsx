@@ -127,7 +127,8 @@ const TierList: React.FC<TierListProps> = ({ tierNames }) => {
                   )}
                 </motion.div>
               ))}
-            {draggedItemTier === tier.points && (
+            {(draggedItemTier === tier.points ||
+              internalDraggedItemRank === tier.points) && (
               <motion.div
                 className={styles.empty}
                 initial={{ opacity: 0, scale: 0.8 }}

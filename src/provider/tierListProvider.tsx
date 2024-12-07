@@ -73,6 +73,7 @@ export const TierListProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const moveItem = (id: string, from: number, to: number) => {
+    if (from === to) return;
     const itemToMove = rankedItems[from].find((o) => o._id === id);
     if (itemToMove) {
       setRankedItems((prev) => {
