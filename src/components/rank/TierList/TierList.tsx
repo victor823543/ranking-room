@@ -21,6 +21,8 @@ const TierList: React.FC<TierListProps> = ({ tierNames }) => {
     draggedItemTier,
     draggedItem,
     moveItem,
+    setSelectedItem,
+    selectedItem,
   } = useTierListContext();
 
   const [internalDraggedId, setInternalDraggedId] = useState<string | null>(
@@ -121,12 +123,16 @@ const TierList: React.FC<TierListProps> = ({ tierNames }) => {
                   variants={objectVariants}
                   initial="normal"
                   whileDrag="dragging"
-                  className={styles.object}
+                  animate={
+                    selectedItem?._id === object._id ? "selected" : "normal"
+                  }
+                  className={`${styles.object} ${selectedItem?._id === object._id ? styles.selected : ""}`}
                   drag
                   dragSnapToOrigin
                   key={object._id}
                   onDragStart={() => handleDragStart(object._id, tier.points)}
                   onDragEnd={handleDragEnd}
+                  onMouseDown={() => setSelectedItem(object)}
                 >
                   {object.image ? (
                     <img
@@ -164,6 +170,11 @@ const objectVariants = {
     backgroundColor: "rgba(var(--primary), 0.5)",
     zIndex: 1000,
     backdropFilter: "blur(8px)",
+  },
+  selected: {
+    backgroundColor: "rgba(var(--primary), 0.2)",
+    zIndex: 800,
+    backdropFilter: "blur(0)",
   },
 };
 

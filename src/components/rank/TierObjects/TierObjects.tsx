@@ -35,20 +35,23 @@ type TierObjectProps = {
 };
 
 const TierObject: React.FC<TierObjectProps> = ({ object }) => {
-  const { setDraggedItem, handleDrop } = useTierListContext();
+  const { setDraggedItem, handleDrop, setSelectedItem, selectedItem } =
+    useTierListContext();
 
   return (
     <motion.div
       variants={objectVariants}
       initial="normal"
       whileDrag="dragging"
-      className={styles.object}
+      animate={selectedItem?._id === object._id ? "selected" : "normal"}
+      className={`${styles.object} ${selectedItem?._id === object._id ? styles.selected : ""}`}
       drag
       dragSnapToOrigin
       key={object._id}
       dragConstraints={{ right: 0 }}
       onDragStart={() => setDraggedItem(object)}
       onDragEnd={handleDrop}
+      onMouseDown={() => setSelectedItem(object)}
     >
       <div className={styles.imgContainer}>
         {object.image ? (
@@ -70,6 +73,11 @@ const objectVariants = {
     backgroundColor: "rgba(var(--base-light), 0.2)",
     zIndex: 0,
     backdropFilter: "blur(0px)",
+  },
+  selected: {
+    backgroundColor: "rgba(var(--primary), 0.2)",
+    zIndex: 800,
+    backdropFilter: "blur(0)",
   },
   dragging: {
     backgroundColor: "rgba(var(--primary), 0.5)",

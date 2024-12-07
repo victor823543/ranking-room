@@ -15,6 +15,8 @@ type TierListContextValue<T> = {
   moveItem: (id: string, from: number, to: number) => void;
   getObjectRanking: () => Array<{ object: string; tier: number }>;
   reload: (items: ObjectType[]) => void;
+  selectedItem: T | null;
+  setSelectedItem: (item: T | null) => void;
 };
 
 const TierListContext = createContext<
@@ -25,6 +27,7 @@ export const TierListProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [draggedItem, setDraggedItem] = useState<ObjectType | null>(null);
+  const [selectedItem, setSelectedItem] = useState<ObjectType | null>(null);
   const [pointerPosition, setPointerPosition] = useState({ x: 0, y: 0 });
   const [rankedItems, setRankedItems] = useState<Record<number, ObjectType[]>>(
     [],
@@ -122,11 +125,13 @@ export const TierListProvider: React.FC<{ children: React.ReactNode }> = ({
     <TierListContext.Provider
       value={{
         draggedItem,
+        selectedItem,
         pointerPosition,
         draggedItemTier,
         setDraggedItem,
         setPointerPosition,
         setDraggedItemTier,
+        setSelectedItem,
         rankedItems,
         notRankedItems,
         setItems,

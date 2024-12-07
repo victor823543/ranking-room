@@ -17,8 +17,14 @@ type TierRankingProps = {
 };
 
 const TierRanking: React.FC<TierRankingProps> = ({ data }) => {
-  const { notRankedItems, rankedItems, setItems, getObjectRanking, reload } =
-    useTierListContext();
+  const {
+    notRankedItems,
+    rankedItems,
+    setItems,
+    getObjectRanking,
+    reload,
+    selectedItem,
+  } = useTierListContext();
   const { user } = useAuth();
   const navigate = useNavigate();
 
@@ -64,6 +70,14 @@ const TierRanking: React.FC<TierRankingProps> = ({ data }) => {
         <TierList tierNames={defaultTierListNames} />
         <TierObjects objects={data.objects} />
       </div>
+      {!!selectedItem && (
+        <div className={styles.selectedDisplay}>
+          <h2>Selected</h2>
+          <p>Name: {selectedItem.name}</p>
+          <div className={`${styles.bottomLeft} ${styles.corner}`}></div>
+          <div className={`${styles.topRight} ${styles.corner}`}></div>
+        </div>
+      )}
     </div>
   );
 };
