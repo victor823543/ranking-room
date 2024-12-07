@@ -44,7 +44,7 @@ const CreateFromTemplate = () => {
         </div>
         <h3 className={styles.h3}>Create From Template</h3>
       </div>
-      <div className={styles.templates}>
+      <motion.div className={styles.templates}>
         {data.map((template) => (
           <TemplateDisplay
             key={template._id}
@@ -52,7 +52,7 @@ const CreateFromTemplate = () => {
             onSystemClick={handleCreateFromTemplate}
           />
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 };
@@ -79,31 +79,53 @@ const TemplateDisplay: React.FC<TemplateDisplayProps> = ({
         transition={{ duration: 0.2 }}
         className={styles.main}
         onClick={() => setChooseSystem(true)}
+        layout
       >
         <h4 className={styles.h4}>{template.name}</h4>
         <p className={styles.p}>Total objects: {template.objects.length}</p>
       </motion.div>
-      <motion.div
-        initial={false}
-        animate={chooseSystem ? { opacity: 1 } : { opacity: 0 }}
-        transition={{ duration: 0.2, delay: 0.2 }}
-        className={styles.chooseSystem}
-        style={
-          chooseSystem ? { pointerEvents: "auto" } : { pointerEvents: "none" }
-        }
-      >
-        {template.rankingSystems.map((system) => (
-          <div
-            key={system}
-            className={styles.system}
-            onClick={() => onSystemClick(template, system)}
-          >
-            {convertRankingSystemToLabel[system]}
-          </div>
-        ))}
-      </motion.div>
+      {chooseSystem && (
+        <motion.div
+          variants={chooseSystemVariants}
+          initial={"hidden"}
+          animate={"visible"}
+          className={styles.chooseSystem}
+          style={
+            chooseSystem ? { pointerEvents: "auto" } : { pointerEvents: "none" }
+          }
+        >
+          {template.rankingSystems.map((system) => (
+            <motion.div
+              key={system}
+              className={styles.system}
+              onClick={() => onSystemClick(template, system)}
+              variants={chooseSystemItemVariants}
+            >
+              {convertRankingSystemToLabel[system]}
+            </motion.div>
+          ))}
+        </motion.div>
+      )}
     </motion.div>
   );
 };
 
+const chooseSystemVariants = {
+  hidden: { opacity: 0, scaleY: 0 },
+  visible: {
+    opacity: 1,
+    scaleY: 1,
+    transition: {
+      duraton: 0.3,
+      ease: "easeInOut",
+      when: "beforeChildren",
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const chooseSystemItemVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.2 } },
+};
 export default CreateFromTemplate;

@@ -1,0 +1,60 @@
+.objectList {
+  max-height: 40rem;
+  width: 30rem;
+  box-sizing: border-box;
+  justify-self: end;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+
+.object {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  height: fit-content;
+  gap: 1rem;
+  background-color: rgba(var(--base-light), 0.2);
+  padding: 0.5rem;
+  margin: 0.75rem 0.5rem;
+  border-radius: var(--border-radius);
+  color: rgb(var(--base-light));
+  cursor: pointer;
+  position: relative;
+}
+
+.selected::after {
+  content: "";
+  position: absolute;
+  bottom: -0.75rem;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: rgba(var(--primary-mid));
+  border-radius: 1.5px;
+}
+
+.imgContainer {
+  position: relative;
+  width: 4rem;
+  height: 4rem;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  background-color: rgb(var(--base-dark));
+  padding: 0.25rem;
+  box-sizing: border-box;
+}
+
+.objectImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--border-radius);
+  pointer-events: none;
+}
+
+.object p {
+  font-size: 1.1rem;
+  flex: 1;
+}

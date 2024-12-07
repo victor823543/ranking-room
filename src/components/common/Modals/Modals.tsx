@@ -37,6 +37,7 @@ const createModalWrapper =
       <motion.div
         style={{
           ...style,
+          WebkitBackdropFilter: `blur(${blur})`,
           backdropFilter: `blur(${blur})`,
           backgroundColor: `rgba(${rgb}, ${darken})`,
           pointerEvents,

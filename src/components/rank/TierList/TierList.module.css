@@ -1,0 +1,97 @@
+.tierList {
+  width: 30rem;
+}
+
+.tier {
+  display: flex;
+  min-height: 6rem;
+}
+
+.tierName {
+  width: 6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 2rem;
+  color: rgb(var(--base-x-light));
+  font-weight: 400;
+}
+
+.objects {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1;
+  padding: 0.5rem;
+  gap: 0.5rem;
+  background-color: rgba(var(--primary-dark), 0.2);
+  box-sizing: border-box;
+}
+
+.empty {
+  width: 5rem;
+  height: 5rem;
+  background-color: rgba(var(--primary), 0.5);
+  border-radius: var(--border-radius);
+}
+
+.object {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  height: fit-content;
+  gap: 1rem;
+  background-color: rgba(var(--base-light), 0.2);
+  padding: 0.5rem;
+  border-radius: var(--border-radius);
+  color: rgb(var(--base-light));
+  cursor: pointer;
+  position: relative;
+  height: 5rem;
+  width: 5rem;
+  box-sizing: border-box;
+}
+
+.selected::after {
+  content: "";
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: rgba(var(--primary-mid));
+  border-radius: 1.5px;
+}
+
+.objectImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--border-radius);
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.tier:first-child .tierName {
+  background-color: rgba(var(--primary-mid));
+}
+
+.tier:nth-child(2) .tierName {
+  background-color: rgba(var(--primary-dark));
+}
+
+.tier:nth-child(3) .tierName {
+  background-color: rgb(var(--primary-x-dark));
+}
+
+.tier:nth-child(4) .tierName {
+  background-color: rgb(var(--primary-2x-dark));
+}
+.tier:nth-child(5) .tierName {
+  background-color: rgb(var(--primary-3x-dark));
+}
+
+.tier:nth-child(6) .tierName {
+  background-color: rgba(var(--primary-3x-dark), 0.8);
+}

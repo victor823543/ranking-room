@@ -42,6 +42,7 @@
 .settingsBtn svg {
   stroke-width: 1.3px;
   cursor: pointer;
+  width: 100%;
 }
 
 .notLiked svg {

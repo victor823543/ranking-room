@@ -65,7 +65,7 @@ const Sidebar: React.FC<SidebarProps> = ({ selected }) => {
           </div>
         </nav>
         <div className={styles.bottomSection}>
-          <Link to={"/account"} className={styles.account}>
+          <Link to={"/settings"} className={styles.account}>
             <UserIcon />
           </Link>
         </div>
