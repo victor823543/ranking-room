@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import Alerts from "../components/common/Alerts/Alerts";
 import ErrorPage from "../components/common/Error/ErrorPage/ErrorPage";
 import LoadingPage from "../components/common/Loading/LoadingPage/LoadingPage";
 import Section from "../components/common/Sections/Sections";
@@ -11,6 +12,7 @@ import ToggleAppSearch from "../components/dashboard/ToggleAppSearch/ToggleAppSe
 import GridLayout from "../components/layout/GridLayout/GridLayout";
 import Layout from "../components/layout/Layout/Layout";
 import PinnedRoom from "../components/rooms/PinnedRoom/PinnedRoom";
+import { useAlerts } from "../hooks/useAlerts";
 import { useHandleSearchParam } from "../hooks/useHandleSearchParam";
 import { useAuth } from "../provider/authProvider";
 import { ListRoomsResponse, Object } from "../types/Room";
@@ -19,6 +21,7 @@ import { callAPI } from "../utils/apiService";
 const Dashboard = () => {
   const { user } = useAuth();
   const { addParam, removeParam, hasParam } = useHandleSearchParam("search");
+  const { pushAlert, alerts, removeAlert } = useAlerts();
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["rooms"],
@@ -68,7 +71,7 @@ const Dashboard = () => {
         }
         bottomRightBaseNarrow={
           <Section>
-            <FriendRequests />
+            <FriendRequests pushAlert={pushAlert} />
           </Section>
         }
       />
@@ -79,6 +82,12 @@ const Dashboard = () => {
           objects={objectsData.objects}
         />
       )}
+      <Alerts
+        list={alerts}
+        onClose={(item) => removeAlert(item)}
+        onDurationEnd={(item) => removeAlert(item)}
+        hasSidebar={true}
+      />
     </Layout>
   );
 };

@@ -1,6 +1,6 @@
 .container {
   min-width: 50rem;
-  min-height: 30rem;
+  height: 34rem;
   display: flex;
   flex-direction: column;
 }
@@ -14,11 +14,13 @@
 }
 
 .grid {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
   margin-top: 2rem;
   flex: 1;
+  min-height: 0;
 }
 
 .selectImage {
@@ -93,6 +95,7 @@
 
 .displayRanking {
   overflow-y: scroll;
+  height: 100%;
 }
 
 .h2 {

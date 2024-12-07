@@ -92,7 +92,6 @@ const ObjectModal: React.FC<ObjectModalProps> = ({
         onClick={onWrapperClick ? () => onWrapperClick() : undefined}
       >
         <OpaqueModal
-          layoutId={`modal-${object.name}-${currentView}`}
           style={{
             outline: "solid 1px rgba(var(--base), 0.4)",
           }}
@@ -103,21 +102,19 @@ const ObjectModal: React.FC<ObjectModalProps> = ({
           }}
         >
           <div className={styles.container}>
-            <motion.h1
-              className={styles.h1}
-              transition={{
-                layout: {
-                  duration: 0.6,
-                },
-              }}
-              layoutId={`header-${object.name}-${currentView}`}
-              layout="position"
-            >
-              {object.name}
-            </motion.h1>
+            <motion.h1 className={styles.h1}>{object.name}</motion.h1>
             <div className={styles.grid}>
               <div className={styles.selectImage}>
-                <div className={styles.imgContainer}>
+                <motion.div
+                  className={styles.imgContainer}
+                  initial={{ opacity: 0, y: -30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.55,
+                    ease: "easeOut",
+                    delay: 0.4,
+                  }}
+                >
                   {object.image ? (
                     <motion.img
                       initial={{ width: "10rem", height: "10rem" }}
@@ -131,7 +128,7 @@ const ObjectModal: React.FC<ObjectModalProps> = ({
                           duration: 0.5,
                         },
                       }}
-                      layoutId={`img-${object.name}-${currentView}`}
+                      layout
                       className={`${form.getValues("image") ? styles.hasNewImg : ""}`}
                       src={object.image}
                       alt={object.name}
@@ -139,18 +136,13 @@ const ObjectModal: React.FC<ObjectModalProps> = ({
                   ) : (
                     <motion.div
                       className={styles.photoIconWrapper}
-                      layoutId={`img-${object.name}-${currentView}`}
+                      layout
                       initial={{ width: "10rem", height: "10rem" }}
                       animate={
                         form.getValues("image")
                           ? { width: "5rem", height: "5rem" }
                           : { width: "10rem", height: "10rem" }
                       }
-                      transition={{
-                        layout: {
-                          duration: 0.5,
-                        },
-                      }}
                     >
                       <PhotoIcon />
                     </motion.div>
@@ -161,7 +153,10 @@ const ObjectModal: React.FC<ObjectModalProps> = ({
                         <ArrowLongRightIcon />
                       </div>
                       <div className={styles.secondImgContainer}>
-                        <img
+                        <motion.img
+                          initial={{ opacity: 0, x: 20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 0.3 }}
                           className={styles.objectImg}
                           src={form.getValues("image")}
                           alt="New image"
@@ -169,21 +164,37 @@ const ObjectModal: React.FC<ObjectModalProps> = ({
                       </div>
                     </>
                   )}
-                </div>
-                <Divider thickness="1px" color="rgb(var(--base))" margin="2rem">
-                  select new
-                </Divider>
-                <div className={styles.lowerSection}>
+                </motion.div>
+                <motion.div
+                  style={{ width: "100%" }}
+                  initial={{ opacity: 0, y: -30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.55,
+                    ease: "easeOut",
+                    delay: 0.3,
+                  }}
+                >
+                  <Divider
+                    thickness="1px"
+                    color="rgb(var(--base))"
+                    margin="2rem"
+                  >
+                    select new
+                  </Divider>
+                </motion.div>
+                <motion.div
+                  className={styles.lowerSection}
+                  initial={{ opacity: 0, y: -30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.55,
+                    ease: "easeOut",
+                    delay: 0.2,
+                  }}
+                >
                   <motion.button
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
                     layout
-                    transition={{
-                      delay: 0.4,
-                      layout: {
-                        delay: 0,
-                      },
-                    }}
                     type="button"
                     className={styles.imgBtn}
                     onClick={addParam}
@@ -199,13 +210,13 @@ const ObjectModal: React.FC<ObjectModalProps> = ({
                       Confirm
                     </CustomizableButton>
                   )}
-                </div>
+                </motion.div>
               </div>
               <div className={styles.displayRanking}>
                 <h2 className={styles.h2}>User Ranking</h2>
                 <p></p>
                 <Divider color="rgba(var(--base), 0.5)" margin="1rem" />
-                {object.ranking.map((ranking) => (
+                {object.ranking.map((ranking, index) => (
                   <UserRanking
                     key={ranking.user}
                     rankingSystem={rankingSystem}
@@ -216,6 +227,7 @@ const ObjectModal: React.FC<ObjectModalProps> = ({
                     }
                     totalObjects={totalObjects}
                     tierNamesRecord={tierNamesRecord}
+                    index={index}
                   />
                 ))}
               </div>
@@ -254,6 +266,7 @@ type UserRankingProps = {
   username: string;
   totalObjects: number;
   tierNamesRecord: Record<number, string>;
+  index: number;
 };
 
 const UserRanking: React.FC<UserRankingProps> = ({
@@ -262,6 +275,7 @@ const UserRanking: React.FC<UserRankingProps> = ({
   username,
   totalObjects,
   tierNamesRecord,
+  index,
 }) => {
   let value: number = 0;
   let max: number = 0;
@@ -285,12 +299,21 @@ const UserRanking: React.FC<UserRankingProps> = ({
   }
 
   return (
-    <div className={styles.userRanking}>
+    <motion.div
+      className={styles.userRanking}
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        ease: "easeOut",
+        delay: index * 0.1,
+        duration: 0.4,
+      }}
+    >
       <h3 className={styles.username}>{username}</h3>
       <p className={styles.rankingValue}>{display}</p>
       <ProgressBar value={value} max={max} />
       <div className={styles.fadeDivider} />
-    </div>
+    </motion.div>
   );
 };
 
