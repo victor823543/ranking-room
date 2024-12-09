@@ -1,6 +1,7 @@
 import { PhotoIcon } from "@heroicons/react/24/solid";
 import { motion } from "framer-motion";
 import React, { useMemo } from "react";
+import { useHandleSearchParam } from "../../../hooks/useHandleSearchParam";
 import { useAuth } from "../../../provider/authProvider";
 import {
   Object,
@@ -90,85 +91,70 @@ const ObjectRanking: React.FC<ObjectRankingProps> = ({
           ))}
         </div>
         <div className={styles.objectList}>
-          {view === "combined" &&
-            renderObjects(combinedRanking, onClick, "combined")}
-          {view === "user" && renderObjects(userRanking, onClick, "user")}
+          {view === "combined" && renderObjects(combinedRanking, "combined")}
+          {view === "user" && renderObjects(userRanking, "user")}
         </div>
       </div>
     </div>
   );
 };
 
-const renderObjects = (
-  objects: Object[],
-  onClick: (object: Object) => void,
-  view: string,
-) => {
+const renderObjects = (objects: Object[], view: string) => {
+  const { currentValue, setParam } = useHandleSearchParam("view-object");
+
   return (
     <>
       {objects.map((object, index) => (
         <motion.div
-          layoutId={`modal-${object.name}-${view}`}
-          onClick={() => onClick(object)}
+          onClick={() => setParam(object._id)}
           key={object._id + view}
           className={styles.object}
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.5,
-            ease: "easeOut",
-            delay: 0.2 + index * 0.1,
-            layout: {
-              duration: 0.5,
-            },
-          }}
+          variants={objectVariants}
+          custom={index}
+          initial="hidden"
+          animate={currentValue === object._id ? "open" : "visible"}
         >
           {object.image ? (
-            <motion.img
-              transition={{
-                layout: {
-                  duration: 0.5,
-                },
-              }}
-              layoutId={`img-${object.name}-${view}`}
+            <img
               className={styles.objectImg}
               src={object.image}
               alt={object.name}
             />
           ) : (
-            <motion.div
-              className={styles.imgContainer}
-              layoutId={`img-${object.name}-${view}`}
-              transition={{
-                layout: {
-                  duration: 0.5,
-                },
-              }}
-            >
+            <div className={styles.imgContainer}>
               <PhotoIcon />
-            </motion.div>
+            </div>
           )}
 
-          <motion.p
-            layoutId={`header-${object.name}-${view}`}
-            transition={{
-              layout: {
-                duration: 0.5,
-              },
-            }}
-            layout="position"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-          >
-            {object.name}
-          </motion.p>
+          <p>{object.name}</p>
         </motion.div>
       ))}
     </>
   );
 };
 
-const MotionPhotoIcon = motion.create(PhotoIcon, { forwardMotionProps: true });
+const objectVariants = {
+  hidden: { opacity: 0, y: 30, filter: "blur(0px)" },
+  visible: (index: number) => ({
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.4,
+      ease: "easeOut",
+      delay: index * 0.1,
+    },
+  }),
+  open: {
+    opacity: 0.5,
+    y: 0,
+    filter: "blur(8px)",
+    transition: {
+      duration: 0.2,
+      ease: "easeInOut",
+    },
+  },
+};
 
 const getUserRankingValue = (
   objectRanking: ObjectRankingT[],

@@ -1,6 +1,9 @@
 import { UserIcon } from "@heroicons/react/24/solid";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
+import React from "react";
+import { Alert, SuccessAlert } from "../../../hooks/useAlerts";
+import useUserActions from "../../../hooks/useUserActions";
 import { ListFriendRequestsResponse } from "../../../types/FriendRequest";
 import { UserStatus } from "../../../types/User";
 import { callAPI } from "../../../utils/apiService";
@@ -9,11 +12,21 @@ import Spinner from "../../common/Loading/Spinner/Spinner";
 import { UserDisplayButton } from "../../social/AddFriends/AddFriends";
 import styles from "./FriendRequests.module.css";
 
-const FriendRequests = () => {
+type FriendRequestsProps = {
+  pushAlert: (alert: Alert) => void;
+};
+
+const FriendRequests: React.FC<FriendRequestsProps> = ({ pushAlert }) => {
   const { data, isLoading, error } = useQuery({
     queryKey: ["friendRequests"],
     queryFn: () =>
       callAPI<ListFriendRequestsResponse>(`/friend-request/list`, "GET"),
+  });
+
+  const { handleActionClick } = useUserActions({
+    onRespondToRequestSuccess: (response) => {
+      pushAlert(new SuccessAlert(response.message, { duration: 3 }));
+    },
   });
 
   if (error) return null;
@@ -56,7 +69,7 @@ const FriendRequests = () => {
                     }}
                     requestId={request._id}
                     status={UserStatus.RECEIVED_REQUEST}
-                    handleClick={() => {}}
+                    handleClick={handleActionClick}
                   />
                 </div>
               </div>

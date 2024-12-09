@@ -122,7 +122,7 @@ export const Modal = createModal({
 
 export const OpaqueModal = createModal({
   borderRadius: "var(--border-radius)",
-  backgroundColor: "rgba(var(--base-2x-dark), 0.6)",
+  backgroundColor: "rgba(var(--base-3x-dark), 0.7)",
   padding: "2rem",
   boxShadow: "var(--shadow-lg)",
 });

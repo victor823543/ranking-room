@@ -154,6 +154,12 @@ const useRoomSettings = (
       role: user.role,
       privilages: convertRoleToPrivilages[user.role],
     }));
+    if (thisUser)
+      getBodyUsers.push({
+        userId: thisUser._id,
+        role: UserRole.ADMIN,
+        privilages: convertRoleToPrivilages[UserRole.ADMIN],
+      });
     updateSettingsMutation.mutate({ name: fields.name, users: getBodyUsers });
   };
 
